@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 21:21:10 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/25 17:53:03 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/25 18:06:51 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int main(int ac, char **av)
 
     f1.open("file.txt");
     f2.open("file.replace.txt");
+    if (!strcmp(av[1], av[2]))
+        return (1);
     while (!f1.eof())
     {
         getline(f1, str);
@@ -44,7 +46,7 @@ int main(int ac, char **av)
         {
             index = str.find(av[1], index);
             if (index == -1)
-                continue;
+                continue ;
             len = strlen(av[1]);
             str.erase(index, len);
             str.insert(index , av[2]);
