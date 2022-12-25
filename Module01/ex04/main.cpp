@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 21:21:10 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/24 21:59:56 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/25 17:53:03 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,44 @@
 #include <iostream>
 
 
-int main()
+void    usage()
 {
-    int i = 0;
-    std::string str[1000];
+    std::cout << "\33[0;30mUsage :\33[0m" << std::endl;
+    std::cout << "\33[0;32m<./replace> S1 S2\33[0m" << std::endl;
+    std::cout << "\t\33[0;31mS1\33[0m : String that you want to remove." << std::endl;
+    std::cout << "\t\33[0;31mS2\33[0m : String that you want to replace." << std::endl;
+}
+
+int main(int ac, char **av)
+{
+    if (ac != 3)
+    {
+        usage();
+        return (1);
+    }
+    int index = 0;
+    int len;
+    std::string str;
     std::ifstream f1;
     std::ofstream f2;
 
     f1.open("file.txt");
     f2.open("file.replace.txt");
-    while (!f1.eof() && i < 1000)
+    while (!f1.eof())
     {
-        getline(f1, str[i]);
-        f2 << str[i++] << std::endl;
+        getline(f1, str);
+        while (index != -1)
+        {
+            index = str.find(av[1], index);
+            if (index == -1)
+                continue;
+            len = strlen(av[1]);
+            str.erase(index, len);
+            str.insert(index , av[2]);
+        }
+        f2 << str << std::endl;
     }
     f1.close();
     f2.close();
+    return (0);
 }

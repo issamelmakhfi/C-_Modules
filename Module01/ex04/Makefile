@@ -1,4 +1,4 @@
-NAME = manipulation
+NAME = replace
 
 CXXFLAGS = -Wall -Wextra -Werror
 
