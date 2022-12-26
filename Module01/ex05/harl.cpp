@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 19:19:02 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/26 16:59:15 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:01:09 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void    harl::complain(std::string level)
             (this->*ptr[3]) ();
             break;
         default :
-            std::cout << "hhhhh" << std::endl;
+            std::cout << "Probably complaining about insignificant problems" << std::endl;
     }
 }
