@@ -1,4 +1,4 @@
-NAME = manipulation
+NAME = harl
 
 CXXFLAGS = -Wall -Wextra -Werror
 
