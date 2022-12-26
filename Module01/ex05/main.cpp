@@ -6,23 +6,16 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 19:15:33 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/25 22:30:02 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:59:03 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "harl.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
-    harl::complain
-    // int harl::*ptr = &harl::a;
-    
-
-    harl ha;
-
-    // ha.*ptr = 20;
-    (ha.*ptr1) ("issam");
-    
-    // std::cout << a << std::endl;
+    harl harlobject;
+    if (ac == 2)
+        harlobject.complain(av[1]);
     return (0);
 }
