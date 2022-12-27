@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 15:05:42 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/24 15:47:20 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/27 20:04:43 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@
 
 class zombie {
     private :
-    std::string name;
+        std::string name;
     public:
-        ~zombie()
-        {
-            std::cout << name << std::endl;
-        }
-        zombie* zombieHorde( int N, std::string name );
+        ~zombie();
         void    announce();
+        void    set_name(std::string __name);
 };
+zombie* zombieHorde( int N, std::string name );
 
 #endif
