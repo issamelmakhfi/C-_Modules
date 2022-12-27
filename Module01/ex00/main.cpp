@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:38:10 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/24 14:59:40 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:58:41 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int main(void)
 {
-    zombie zom;
     zombie *ptr;
 
-    ptr = zom.new_zombie("hello");
+    ptr = new_zombie("FOOO");
     ptr->announce();
-    zom.randomChump("issam");
     delete ptr;
+    randomChump("BOOO");
     return (0);
 }

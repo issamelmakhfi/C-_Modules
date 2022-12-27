@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:33:46 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/24 14:59:19 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:57:35 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,18 @@ class zombie {
     private :
         std::string name;
     public :
+        zombie (std::string _name)
+        {
+            name = _name;
+        }
         ~zombie()
         {
-            std::cout << name << std::endl;
+            std::cout <<name << " is dead." << std::endl;
         }
         void    announce(void);
-        zombie *new_zombie(std::string name);
-        void randomChump( std::string name );
 };
+
+void randomChump( std::string name );
+zombie *new_zombie(std::string name);
 
 #endif
