@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   test.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 18:08:51 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/27 21:13:25 by ielmakhf         ###   ########.fr       */
+/*   Created: 2022/12/26 19:51:19 by ielmakhf          #+#    #+#             */
+/*   Updated: 2022/12/26 19:52:33 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include <iostream>
 
-HumanB::HumanB(std::string str)
-{
-    name = str;
-}
 
-HumanB::~HumanB()
+int main()
 {
-    std::cout << "HumanB Done" << std::endl;
-}
-void    HumanB::attack()
-{
-    std::cout << name << " attacks with their " << ptr->getType() << std::endl;
-}
-
-void    HumanB::setWeapon(Weapon &ptr1)
-{
-    ptr = &ptr1;
+    fixed
+    return(0);
 }
