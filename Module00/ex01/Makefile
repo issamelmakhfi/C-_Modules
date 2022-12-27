@@ -1,6 +1,6 @@
 NAME = ph_book
 
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 CC = c++
 

@@ -6,7 +6,7 @@
 /*   By: ielmakhf <ielmakhf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 20:01:01 by ielmakhf          #+#    #+#             */
-/*   Updated: 2022/12/22 21:12:37 by ielmakhf         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:22:56 by ielmakhf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ int    ph_book::get_data(int *i)
     int id = 0;
     std::string  index;
     int j = 0;
-    if (*i > 8)
-        *i = 8;
-    while (j < *i)
+    int tmp = *i;
+    if (tmp > 8)
+        tmp = 8;
+    while (j < tmp)
     {
         info();
         std::cout << std::setw(10);
@@ -67,7 +68,7 @@ int    ph_book::get_data(int *i)
     else
     {
         id = atoi(index.c_str());
-        if (id > *i - 1) 
+        if (id > tmp - 1) 
         {
             std::cout << "\33[0;31mNO CONTACT FOUND. SORRY!\33[0m" << std::endl;
             return (1);
@@ -96,10 +97,10 @@ void    ph_book::set_data(int *i)
     int id;
     id = *i % 8;
     arr[id].set_first_name();
-    arr[*i].set_last_name();
-    arr[*i].set_nickname();
-    arr[*i].set_darkest_secret();
-    arr[*i].set_phone_number();
+    arr[id].set_last_name();
+    arr[id].set_nickname();
+    arr[id].set_darkest_secret();
+    arr[id].set_phone_number();
     (*i)++;
 }
 
