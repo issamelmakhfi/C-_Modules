@@ -9,3 +9,5 @@ read commit
 echo "Your Commit is \"$commit\""
 
 git commit -m commit
+
+git push
