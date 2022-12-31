@@ -1,4 +1,4 @@
-NAME = fixed 
+NAME = Fixed 
 
 CXXFLAGS = -Wall -Wextra -Werror 
 
@@ -6,9 +6,9 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC = fixed.cpp main.cpp 
+SRC = Fixed.cpp main.cpp 
 
-INC = fixed.hpp 
+INC = Fixed.hpp 
 
 OBJ = $(SRC:.cpp=.o) 
 

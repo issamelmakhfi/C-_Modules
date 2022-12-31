@@ -1,27 +1,33 @@
-#ifndef _fixed_HPP_
-#define _fixed_HPP_
+#ifndef _Fixed_HPP_
+#define _Fixed_HPP_
 
 #include <iostream>
+#include <math.h>
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	fixed
+class	Fixed
 {
 	public	:
-		fixed();
-		// fixed (const int num);
-		// fixed (const float f_num);
-		fixed (fixed const &obj);
-		~fixed ();
-		fixed &operator= (const fixed &obj);
+		Fixed ();
+		Fixed (const int value);
+		Fixed (const float f_value);
+		Fixed (Fixed const &obj);
+		~Fixed ();
+		Fixed &operator= (const Fixed &obj);
+		int	toInt(void) const;
 		float	toFloat(void) const;
-		int		toInt(void) const;
+		friend std::ostream & operator << (std::ostream &out,  Fixed &c)
+		{
+			out << c.fixed_P;
+			return out;
+		}
+
 
 	private	:
-		int fixed_P;
-		// static const int bits = 8;
+		int	fixed_P;
 		//	DataType	attributes.
 };
 
