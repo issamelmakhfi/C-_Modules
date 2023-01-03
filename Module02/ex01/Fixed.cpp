@@ -12,19 +12,10 @@ Fixed::Fixed(const int value)
 }
 
 Fixed::Fixed(const float f_value)
-{	
-	// int tmp = f_value * 256;
+{
 	float tmp = f_value * 256;
 	fixed_P = roundf(tmp);
-	// std::cout << "-------" << fixed_P << std::endl;
-	// float tmp = toInt();
-	// std::cout << "-------" <<f_value << std::endl;
-	// std::cout << "______" << tmp << std::endl;
-	// std::cout << "______" << tmp / 256 << std::endl;
-	// exit(0);
-	// std::cout << tmp << std::endl;
 	std::cout << "Fixed : Float Default Constructor Called" << std::endl;
-	// fixed_P = f_value;
 }
 
 Fixed::~Fixed()
@@ -43,10 +34,7 @@ Fixed	&Fixed::operator= (const Fixed &obj)
 {
 	std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (this != &obj)
-	{
-		//	this->attributes = obj.attributes;
 		this->fixed_P = obj.fixed_P;
-	}
 	return (*this);
 }
 
@@ -57,7 +45,6 @@ int Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
-	// int tmp = toInt
 	float res = (float)fixed_P / 256;
 	return (res);
 }
