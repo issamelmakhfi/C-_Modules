@@ -8,13 +8,23 @@ Fixed::Fixed()
 Fixed::Fixed(const int value)
 {
 	std::cout << "Fixed : Int Default Constructor Called" << std::endl;
-	fixed_P = value;
+	fixed_P = value * 256;
 }
 
 Fixed::Fixed(const float f_value)
-{
+{	
+	// int tmp = f_value * 256;
+	float tmp = f_value * 256;
+	fixed_P = roundf(tmp);
+	// std::cout << "-------" << fixed_P << std::endl;
+	// float tmp = toInt();
+	// std::cout << "-------" <<f_value << std::endl;
+	// std::cout << "______" << tmp << std::endl;
+	// std::cout << "______" << tmp / 256 << std::endl;
+	// exit(0);
+	// std::cout << tmp << std::endl;
 	std::cout << "Fixed : Float Default Constructor Called" << std::endl;
-	fixed_P = (float)f_value;
+	// fixed_P = f_value;
 }
 
 Fixed::~Fixed()
@@ -47,5 +57,7 @@ int Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
-	return (fixed_P * pow(2, 8));
+	// int tmp = toInt
+	float res = (float)fixed_P / 256;
+	return (res);
 }
