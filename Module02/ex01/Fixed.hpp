@@ -2,7 +2,7 @@
 #define _Fixed_HPP_
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 // ******************************************************** //
 //                         CLASSES                         //
@@ -28,6 +28,7 @@ class	Fixed
 
 	private	:
 		int	fixed_P;
+		int fractional_bits = 8;
 		//	DataType	attributes.
 };
 

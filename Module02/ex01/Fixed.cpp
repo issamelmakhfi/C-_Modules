@@ -8,12 +8,12 @@ Fixed::Fixed()
 Fixed::Fixed(const int value)
 {
 	std::cout << "Fixed : Int Default Constructor Called" << std::endl;
-	fixed_P = value * 256;
+	fixed_P = value * pow(2, fractional_bits);
 }
 
 Fixed::Fixed(const float f_value)
 {
-	float tmp = f_value * 256;
+	float tmp = f_value * pow(2, fractional_bits);
 	fixed_P = roundf(tmp);
 	std::cout << "Fixed : Float Default Constructor Called" << std::endl;
 }
@@ -40,11 +40,11 @@ Fixed	&Fixed::operator= (const Fixed &obj)
 
 int Fixed::toInt(void) const
 {
-	return (fixed_P / 256);
+	return (fixed_P / pow(2, fractional_bits));
 }
 
 float	Fixed::toFloat(void) const
 {
-	float res = (float)fixed_P / 256;
+	float res = (float)fixed_P / pow(2, fractional_bits);
 	return (res);
 }
