@@ -1,5 +1,5 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _fixed_HPP_
+#define _fixed_HPP_
 
 #include <iostream>
 
@@ -7,20 +7,15 @@
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	fixed
 {
 	public	:
-		Fixed ();
-		Fixed(int value);
-		Fixed(const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int toInt(void) const;
-		float toFloat(void) const;
+		fixed ();
+		fixed (fixed const &obj);
+		~fixed ();
+		fixed &operator= (const fixed &obj);
 
 	private	:
-		int	fixed_P;
 		//	DataType	attributes.
 };
 

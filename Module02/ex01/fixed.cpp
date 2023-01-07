@@ -1,38 +1,48 @@
-#include "fixed.hpp"
+#include "Fixed.hpp"
 
-
-fixed::fixed()
+Fixed::Fixed()
 {
-	std::cout << "Default Constructor Called" << std::endl;
+	std::cout << "Fixed : Default Constructor Called" << std::endl;
 	fixed_P = 0;
 }
 
-// fixed::fixed(const int num)
-// {
-// 	std::cout << "Int : Default Constructor Called" << std::endl;
-// 	fixed_P = num;
-// }
-
-// fixed::fixed(const float f_num)
-// {
-// 	std::cout << "Float : Default Constructor Called" << std::endl;
-// 	fixed_P = f_num;
-// }
-
-fixed::~fixed()
+Fixed::Fixed(const int value)
 {
-	std::cout << "Destructor Called" << std::endl;
+	(void)value;
+	std::cout << "Fixed : Int Default Constructor Called" << std::endl;
 }
 
-fixed::fixed(fixed const &obj)
+Fixed::Fixed(const float f_value)
+{
+	(void)f_value;
+	std::cout << "Fixed : Float Default Constructor Called" << std::endl;
+}
+
+Fixed::~Fixed()
+{
+	std::cout << "Fixed : Destructor Called" << std::endl;
+}
+
+Fixed::Fixed(Fixed const &obj)
 {
 	std::cout << "Copy Constructor Called" << std::endl;
-	fixed_P = obj.fixed_P;
+	if (this != &obj)
+		*this = obj;
 }
 
-fixed	&fixed::operator= (const fixed &obj)
+Fixed	&Fixed::operator= (const Fixed &obj)
 {
 	std::cout << "Copy Assignment Operator Called" << std::endl;
-	this->fixed_P = obj.fixed_P;
+	if (this != &obj)
+	{
+		this->fixed_P = obj.fixed_P;
+	}
 	return (*this);
+}
+
+int	Fixed::toInt(void) const
+{
+	int to_int;
+	to_int = fixed_P / 256;
+	return (fixed_P);
 }
