@@ -2,18 +2,21 @@
 
 Fixed::Fixed()
 {
-	fixed_P = 0 * pow(2, fractional_bits);
+	// std::cout << "Fixed : Default Constructor Called" << std::endl;
+	fixed_P = 0;
 }
 
 Fixed::Fixed(int const value)
 {
-	fixed_P = value * pow(2, fractional_bits);
+	// std::cout << "Fixed : Default Constructor Called" << std::endl;
+	fixed_P = value * 256;
 }
 
 Fixed::Fixed(float const value)
 {
-	float tmp = value * pow(2, fractional_bits);
+	float tmp = value * 256;
 	fixed_P = roundf(tmp);
+	// std::cout << "Fixed : Default Constructor Called" << std::endl;
 }
 
 Fixed::~Fixed()
@@ -23,23 +26,25 @@ Fixed::~Fixed()
 
 Fixed::Fixed(Fixed const &obj)
 {
+	// std::cout << "Copy Constructor Called" << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 int Fixed::toInt(void) const
 {
-	return (fixed_P / pow(2, fractional_bits));
+	return (fixed_P / 256);
 }
 
 float	Fixed::toFloat(void) const
 {
-	float res = (float)fixed_P / pow(2, fractional_bits);
+	float res = (float)fixed_P / 256;
 	return (res);
 }
 
 Fixed	&Fixed::operator= (const Fixed &obj)
 {
+	// std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (this != &obj)
 		this->fixed_P = obj.getRawBits();
 	return (*this);
@@ -163,7 +168,6 @@ Fixed const &Fixed::max(Fixed const &f1, Fixed const &f2)
 		return (f2);
 	return (f1);
 }
-//////////////////////////////// << operator ////////////////////////////
 
 std::ostream &operator << (std::ostream &out, Fixed const &Fi)
 {

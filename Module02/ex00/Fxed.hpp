@@ -11,17 +11,15 @@ class	Fixed
 {
 	public	:
 		Fixed ();
-		Fixed(int value);
-		Fixed(const float f_value);
 		Fixed (Fixed const &obj);
 		~Fixed ();
 		Fixed &operator= (const Fixed &obj);
-		int toInt(void) const;
-		float toFloat(void) const;
+		int 	getRawBits(void) const;
+		void	setRawBits(int const Raw);
 
 	private	:
-		int	fixed_P;
-		//	DataType	attributes.
+		int	Fixed_p;
+		static const int fractional_bits = 8;
 };
 
 // ******************************************************** //
