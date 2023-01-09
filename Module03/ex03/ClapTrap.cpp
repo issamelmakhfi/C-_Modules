@@ -1,8 +1,13 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string Name)
+ClapTrap::ClapTrap()
 {
 	std::cout << "ClapTrap : Default Constructor Called" << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string Name)
+{
+	std::cout << "ClapTrap : Constructor Called" << std::endl;
 	this->Name = Name;
 	this->Hit_points = 100;
 	this->Energy_points = 50;
