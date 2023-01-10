@@ -13,15 +13,15 @@ int main()
 	goko.clapTrapStat();
 	zeno.clapTrapStat();
 	
-	zeno.attack(vegeta.getName());
+	zeno.attack(vegeta.ClapTrap_getName());
 	vegeta.takeDamage(zeno.getDamage());
 
-	zeno.attack(goko.getName());
+	zeno.attack(goko.ClapTrap_getName());
 	goko.takeDamage(zeno.getDamage());
 
-	vegeta.attack(zeno.getName());
+	vegeta.attack(zeno.ClapTrap_getName());
 	zeno.takeDamage(vegeta.getDamage());
-	goko.attack(zeno.getName());
+	goko.attack(zeno.ClapTrap_getName());
 	zeno.takeDamage(goko.getDamage());
 
 	zeno.whoAmI();

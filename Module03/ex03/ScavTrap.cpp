@@ -35,18 +35,18 @@ ScavTrap	&ScavTrap::operator= (const ScavTrap &obj)
 	return (*this);
 }
 
-void	ScavTrap::attack(std::string const &target)
-{
-	if (this->Energy_points <= 0 || this->Hit_points <= 0)
-	{
-		std::cout << "zzzzzzzzzz i can't do this anymore, Repaire me!" << std::endl;
-		return ;
-	}
-	if (this->Attack_damage < 20)
-		this->Attack_damage++;
-	this->Energy_points--;
-	std::cout << "ScavTrap " << Name << " attacks " << target << ", cousing " << Attack_damage << " points of damage!" << std::endl;
-}
+// void	ScavTrap::attack(std::string const &target)
+// {
+// 	if (this->Energy_points <= 0 || this->Hit_points <= 0)
+// 	{
+// 		std::cout << "zzzzzzzzzz i can't do this anymore, Repaire me!" << std::endl;
+// 		return ;
+// 	}
+// 	if (this->Attack_damage < 20)
+// 		this->Attack_damage++;
+// 	this->Energy_points--;
+// 	std::cout << "ScavTrap " << Name << " attacks " << target << ", cousing " << Attack_damage << " points of damage!" << std::endl;
+// }
 
 void	ScavTrap::guardGate()
 {
