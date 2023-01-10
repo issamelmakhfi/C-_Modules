@@ -18,7 +18,7 @@ class	FragTrap : virtual public ClapTrap
 		FragTrap &operator= (const FragTrap &obj);
 
 		void highFivesGuys(void);
-		// void attack(std::string const &target);
+		void attack(std::string const &target);
 
 	private	:
 		//	DataType	attributes.

@@ -35,3 +35,16 @@ void DiamondTrap::whoAmI()
 {
 	std::cout << "DiamondTrap Name : " << this->_name << "  ClapTrap Name : " << this->Name << std::endl;
 }
+
+void	DiamondTrap::attack(const std::string &target)
+{
+	if (this->Energy_points <= 0 || this->Hit_points <= 0)
+	{
+		std::cout << "zzzzzzzzzz i can't do this anymore, Repaire me!" << std::endl;
+		return ;
+	}
+	if (this->Attack_damage < 20)
+		this->Attack_damage++;
+	this->Energy_points--;
+	std::cout << "DiamondTrap " << _name << " attacks " << target << ", cousing " << Attack_damage << " points of damage!" << std::endl;
+}
