@@ -19,11 +19,6 @@ class	Fixed
 		Fixed &operator= (const Fixed &obj);
 		int	toInt(void) const;
 		float	toFloat(void) const;
-		friend std::ostream & operator<< (std::ostream &out,  Fixed const &c)
-		{
-			out << c.toFloat();
-			return out;
-		}
 
 
 	private	:
@@ -31,6 +26,8 @@ class	Fixed
 		int fractional_bits = 8;
 		//	DataType	attributes.
 };
+
+std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 
 // ******************************************************** //
 //                        FUNCTIONS                        //
