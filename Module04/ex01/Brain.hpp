@@ -1,5 +1,5 @@
-#ifndef _WrongAnimal_HPP_
-#define _WrongAnimal_HPP_
+#ifndef _Brain_HPP_
+#define _Brain_HPP_
 
 #include <iostream>
 
@@ -7,16 +7,17 @@
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	WrongAnimal
+class	Brain
 {
 	public	:
-		WrongAnimal ();
-		WrongAnimal (WrongAnimal const &obj);
-		~WrongAnimal ();
-		WrongAnimal &operator= (const WrongAnimal &obj);
+		Brain ();
+		Brain (Brain const &obj);
+		~Brain ();
+		Brain &operator= (const Brain &obj);
 
 	private	:
-		
+		std::string ideas[100];
+		//	DataType	attributes.
 };
 
 // ******************************************************** //
