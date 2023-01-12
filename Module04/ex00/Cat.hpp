@@ -1,32 +1,28 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _Cat_HPP_
+#define _Cat_HPP_
 
 #include <iostream>
-#include <cmath>
+#include "Animal.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	Cat : public Animal
 {
 	public	:
-		Fixed ();
-		Fixed (const int value);
-		Fixed (const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int	toInt(void) const;
-		float	toFloat(void) const;
+		Cat ();
+		Cat (Cat const &obj);
+		~Cat ();
+		Cat &operator= (const Cat &obj);
 
+		// using Animal::makeSound;
+		void makeSound() const;
 
 	private	:
-		int	fixed_P;
-		static const int fractional_bits = 8;
+		//	DataType	attributes.
 };
 
-std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //

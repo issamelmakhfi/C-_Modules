@@ -1,4 +1,4 @@
-NAME = ClapTrap 
+NAME = DiamondTrap 
 
 CXXFLAGS = -Wall -Wextra -Werror 
 
@@ -6,13 +6,13 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC = ClapTrap.cpp main.cpp 
+SRC = ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
-INC = ClapTrap.hpp 
+INC = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 
 OBJ = $(SRC:.cpp=.o) 
 
-all : $(NAME)
+all : $(NAME) 
 
 $(NAME) : $(OBJ)
 	$(CC) $(CXXFLAGS) $(STD) $(OBJ) -o $(NAME) 

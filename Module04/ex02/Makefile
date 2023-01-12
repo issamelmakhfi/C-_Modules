@@ -1,4 +1,4 @@
-NAME = ClapTrap 
+NAME = Brain 
 
 CXXFLAGS = -Wall -Wextra -Werror 
 
@@ -6,13 +6,12 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC = ClapTrap.cpp main.cpp 
+SRC = Animal.cpp Brain.cpp Cat.cpp Dog.cpp main.cpp
 
-INC = ClapTrap.hpp 
-
+INC = Animal.hpp Brain.hpp Cat.hpp Dog.hpp
 OBJ = $(SRC:.cpp=.o) 
 
-all : $(NAME)
+all : $(NAME) 
 
 $(NAME) : $(OBJ)
 	$(CC) $(CXXFLAGS) $(STD) $(OBJ) -o $(NAME) 

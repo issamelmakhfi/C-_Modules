@@ -1,32 +1,29 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _ScavTrap_HPP_
+#define _ScavTrap_HPP_
 
 #include <iostream>
-#include <cmath>
+#include "ClapTrap.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	ScavTrap : virtual public ClapTrap
 {
 	public	:
-		Fixed ();
-		Fixed (const int value);
-		Fixed (const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int	toInt(void) const;
-		float	toFloat(void) const;
+		ScavTrap ();
+		ScavTrap (std::string Name);
+		ScavTrap (ScavTrap const &obj);
+		~ScavTrap ();
+		ScavTrap &operator= (const ScavTrap &obj);
 
+		void	attack(std::string const &target);
+		void 	guardGate();
 
 	private	:
-		int	fixed_P;
-		static const int fractional_bits = 8;
+		//	DataType	attributes.
 };
 
-std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //

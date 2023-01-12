@@ -1,32 +1,29 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _Dog_HPP_
+#define _Dog_HPP_
 
 #include <iostream>
-#include <cmath>
+#include "Animal.hpp"
+#include "Brain.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	Dog : public Animal
 {
 	public	:
-		Fixed ();
-		Fixed (const int value);
-		Fixed (const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int	toInt(void) const;
-		float	toFloat(void) const;
+		Dog ();
+		Dog (Dog const &obj);
+		~Dog ();
+		Dog &operator= (const Dog &obj);
 
+		void makeSound () const ;
 
 	private	:
-		int	fixed_P;
-		static const int fractional_bits = 8;
+		Brain *ptr1;
+		//	DataType	attributes.
 };
 
-std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //

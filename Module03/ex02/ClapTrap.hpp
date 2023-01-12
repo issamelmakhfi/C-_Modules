@@ -14,7 +14,6 @@ class	ClapTrap
 		ClapTrap (ClapTrap const &obj);
 		~ClapTrap ();
 		ClapTrap &operator= (const ClapTrap &obj);
-
 		
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
@@ -23,7 +22,7 @@ class	ClapTrap
 		std::string getName(void);
 		void clapTrapStat();
 
-	private	:
+	protected :
 		std::string Name;
 		int 		Hit_points;
 		int 		Energy_points;

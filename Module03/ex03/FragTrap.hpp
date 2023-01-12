@@ -1,32 +1,29 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _FragTrap_HPP_
+#define _FragTrap_HPP_
 
 #include <iostream>
-#include <cmath>
+#include "ClapTrap.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	FragTrap : virtual public ClapTrap
 {
 	public	:
-		Fixed ();
-		Fixed (const int value);
-		Fixed (const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int	toInt(void) const;
-		float	toFloat(void) const;
+		FragTrap ();
+		FragTrap (std::string Name);
+		FragTrap (FragTrap const &obj);
+		~FragTrap ();
+		FragTrap &operator= (const FragTrap &obj);
 
+		void highFivesGuys(void);
+		void attack(std::string const &target);
 
 	private	:
-		int	fixed_P;
-		static const int fractional_bits = 8;
+		//	DataType	attributes.
 };
 
-std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //

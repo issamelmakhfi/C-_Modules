@@ -1,32 +1,25 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _Brain_HPP_
+#define _Brain_HPP_
 
 #include <iostream>
-#include <cmath>
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	Brain
 {
 	public	:
-		Fixed ();
-		Fixed (const int value);
-		Fixed (const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int	toInt(void) const;
-		float	toFloat(void) const;
-
+		Brain ();
+		Brain (Brain const &obj);
+		~Brain ();
+		Brain &operator= (const Brain &obj);
 
 	private	:
-		int	fixed_P;
-		static const int fractional_bits = 8;
+		std::string ideas[100];
+		//	DataType	attributes.
 };
 
-std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //

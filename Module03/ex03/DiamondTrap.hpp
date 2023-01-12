@@ -1,32 +1,32 @@
-#ifndef _Fixed_HPP_
-#define _Fixed_HPP_
+#ifndef _DiamondTrap_HPP_
+#define _DiamondTrap_HPP_
 
 #include <iostream>
-#include <cmath>
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Fixed
+class	DiamondTrap : public FragTrap , public ScavTrap
 {
 	public	:
-		Fixed ();
-		Fixed (const int value);
-		Fixed (const float f_value);
-		Fixed (Fixed const &obj);
-		~Fixed ();
-		Fixed &operator= (const Fixed &obj);
-		int	toInt(void) const;
-		float	toFloat(void) const;
+		DiamondTrap (std::string _name);
+		DiamondTrap (DiamondTrap const &obj);
+		~DiamondTrap ();
+		DiamondTrap &operator= (const DiamondTrap &obj);
+
+		void whoAmI();
+		void	attack(std::string const &target);
 
 
 	private	:
-		int	fixed_P;
-		static const int fractional_bits = 8;
+		std::string _name;
+		//	DataType	attributes.
 };
 
-std::ostream & operator<< (std::ostream &out,  Fixed const &c);
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //
