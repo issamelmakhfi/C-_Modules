@@ -14,15 +14,9 @@ class	Cat : public Animal
 	public	:
 		Cat ();
 		Cat (Cat const &obj);
-		Cat (Cat &obj)
-		{
-			ptr = new Brain;
-			*ptr = *(obj.ptr);
-		}
-		 ~Cat ();
+		~Cat ();
 		Cat &operator= (const Cat &obj);
 
-		// using Animal::makeSound;
 		void makeSound() const;
 
 	private	:

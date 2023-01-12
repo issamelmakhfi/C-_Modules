@@ -3,6 +3,7 @@
 WrongCat::WrongCat()
 {
 	std::cout << "WrongCat : Default Constructor Called" << std::endl;
+	this->type = "Cat";
 }
 
 WrongCat::~WrongCat()
@@ -26,4 +27,9 @@ WrongCat	&WrongCat::operator= (const WrongCat &obj)
 		//	...
 	}
 	return (*this);
+}
+
+void WrongCat::makeSound() const
+{
+	std::cout << "Cat Sound" << std::endl;
 }

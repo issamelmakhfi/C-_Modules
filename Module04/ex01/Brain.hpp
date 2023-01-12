@@ -13,7 +13,6 @@ class	Brain
 		Brain ();
 		Brain (Brain const &obj);
 		~Brain ();
-		Brain &operator= (const Brain &obj);
 
 	private	:
 		std::string ideas[100];

@@ -23,8 +23,7 @@ Cat	&Cat::operator= (const Cat &obj)
 	std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (this != &obj)
 	{
-		//	this->attributes = obj.attributes;
-		//	...
+		//lllll
 	}
 	return (*this);
 }

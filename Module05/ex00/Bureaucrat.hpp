@@ -1,5 +1,5 @@
-#ifndef _Animal_HPP_
-#define _Animal_HPP_
+#ifndef _Bureaucrat_HPP_
+#define _Bureaucrat_HPP_
 
 #include <iostream>
 
@@ -7,19 +7,22 @@
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Animal
+class	Bureaucrat
 {
 	public	:
-		Animal ();
-		Animal (Animal const &obj);
-		virtual ~Animal () = 0;
-		Animal &operator= (const Animal &obj);
+		Bureaucrat ();
+		Bureaucrat (std::string Name);
+		Bureaucrat (Bureaucrat const &obj);
+		~Bureaucrat ();
 
-		std::string getType() const;
-		virtual void makeSound() const = 0;
+		std::string const getName();
+		int 	getGrade();
+		void	checkGrade(Bureaucrat &obj);
 
-	protected	:
-		std::string type;
+	private	:
+		std::string const Name;
+		int grade;
+		//	DataType	attributes.
 };
 
 // ******************************************************** //

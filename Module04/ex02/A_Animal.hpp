@@ -1,25 +1,25 @@
-#ifndef _Cat_HPP_
-#define _Cat_HPP_
+#ifndef _A_Animal_HPP_
+#define _A_Animal_HPP_
 
 #include <iostream>
-#include "Animal.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Cat : public Animal
+class	A_Animal
 {
 	public	:
-		Cat ();
-		Cat (Cat const &obj);
-		~Cat ();
-		Cat &operator= (const Cat &obj);
+		A_Animal ();
+		A_Animal (A_Animal const &obj);
+		virtual ~A_Animal () = 0;
+		A_Animal &operator= (const A_Animal &obj);
 
-		void makeSound() const;
+		std::string getType() const;
+		virtual void makeSound() const = 0;
 
-	private	:
-		//	DataType	attributes.
+	protected	:
+		std::string type;
 };
 
 // ******************************************************** //

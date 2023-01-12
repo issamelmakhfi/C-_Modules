@@ -1,4 +1,4 @@
-NAME = Abstract
+NAME = Bureaucrat 
 
 CXXFLAGS = -Wall -Wextra -Werror 
 
@@ -6,9 +6,10 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC = A_Animal.cpp Brain.cpp Cat.cpp Dog.cpp main.cpp
+SRC = Bureaucrat.cpp main.cpp 
 
-INC = A_Animal.hpp Brain.hpp Cat.hpp Dog.hpp
+INC = Bureaucrat.hpp 
+
 OBJ = $(SRC:.cpp=.o) 
 
 all : $(NAME) 

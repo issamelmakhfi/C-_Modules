@@ -42,6 +42,8 @@ class	Fixed
 	private	:
 		int fixed_P;
 		static const int fractional_bits = 8;
+
+		//	DataType	attributes.
 };
 
 // ******************************************************** //

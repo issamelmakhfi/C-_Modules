@@ -16,7 +16,6 @@ class	Dog : public Animal
 		~Dog ();
 		Dog &operator= (const Dog &obj);
 
-		// using Animal::makeSound;
 		void makeSound () const ;
 
 	private	:

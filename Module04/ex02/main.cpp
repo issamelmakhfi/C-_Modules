@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "A_Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
@@ -9,8 +9,23 @@
 
 int main()
 {
-	Animal *p = new Dog();
-	(void)p;
+	A_Animal *array[2];
+	int i = 0;
+
+	while (i < 2)
+	{
+		if ( i < 1 )
+			array[i] = new Dog();
+		else
+			array[i] = new Cat();
+		i++;
+	}
+	i = 0;
+	while (i < 2)
+	{
+		delete array[i];
+		i++;
+	}
 	// atexit(leak);
 	return 0;
 }

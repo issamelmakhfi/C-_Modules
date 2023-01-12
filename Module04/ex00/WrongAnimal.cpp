@@ -21,9 +21,11 @@ WrongAnimal	&WrongAnimal::operator= (const WrongAnimal &obj)
 {
 	std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (this != &obj)
-	{
-		//	this->attributes = obj.attributes;
-		//	...
-	}
+		this->type = this->getType();
 	return (*this);
+}
+
+void WrongAnimal::makeSound() const
+{
+	std::cout << "Animal Sound" << std::endl;
 }

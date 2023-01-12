@@ -14,9 +14,16 @@ class	WrongAnimal
 		WrongAnimal (WrongAnimal const &obj);
 		~WrongAnimal ();
 		WrongAnimal &operator= (const WrongAnimal &obj);
+		std::string getType() const
+		{
+			return (type);
+		}
 
-	private	:
-		
+		void makeSound() const;
+
+	protected	:
+		std::string type;
+		//	DataType	attributes.
 };
 
 // ******************************************************** //

@@ -12,13 +12,13 @@ class	Animal
 	public	:
 		Animal ();
 		Animal (Animal const &obj);
-		~Animal ();
+		virtual ~Animal ();
 		Animal &operator= (const Animal &obj);
 
 		std::string getType() const;
 		virtual void makeSound() const
 		{
-			std::cout << "Hmmmmmm" << std::endl;
+			std::cout << "Animal Sound" << std::endl;
 		}
 
 	protected	:

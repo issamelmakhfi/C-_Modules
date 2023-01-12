@@ -18,7 +18,7 @@ class	Animal
 		std::string getType() const;
 		virtual void makeSound() const
 		{
-			std::cout << "Hmmmmmm" << std::endl;
+			std::cout << "Animal Sound" << std::endl;
 		}
 
 	protected	:

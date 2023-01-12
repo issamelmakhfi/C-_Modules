@@ -14,7 +14,7 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float f_value)
 {
 	float tmp = f_value * pow(2, fractional_bits);
-	fixed_P = tmp;
+	fixed_P = roundf(tmp);
 	std::cout << "Fixed : Float Default Constructor Called" << std::endl;
 }
 
@@ -48,7 +48,6 @@ float	Fixed::toFloat(void) const
 	float res = (float)fixed_P / pow(2, fractional_bits);
 	return (res);
 }
-
 std::ostream & operator<< (std::ostream &out,  Fixed const &c)
 {
 	out << c.toFloat();

@@ -7,26 +7,43 @@
 // 	system("leaks Brain");
 // }
 
+
+////////////////// main of Deep copy //////////////
+
+// int main()
+// {
+// 	Animal *array[2];
+// 	int i = 0;
+
+// 	while (i < 2)
+// 	{
+// 		if ( i < 1 )
+// 			array[i] = new Dog();
+// 		else
+// 			array[i] = new Cat();
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < 2)
+// 	{
+// 		delete array[i];
+// 		i++;
+// 	}
+// 	// atexit(leak);
+// 	return 0;
+// }
+
+/////////////////////////// main of leaks /////////////// 
+
+
 int main()
 {
-	Animal *array[2];
-	int i = 0;
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 
-	while (i < 2)
-	{
-		if ( i < 1 )
-			array[i] = new Dog();
-		else
-			array[i] = new Cat();
-		i++;
-	}
-	*array[0] = *array[1];
-	i = 0;
-	while (i < 2)
-	{
-		delete array[i];
-		i++;
-	}
+	delete j;//should not create a leak
+	delete i;
+
 	// atexit(leak);
 	return 0;
 }

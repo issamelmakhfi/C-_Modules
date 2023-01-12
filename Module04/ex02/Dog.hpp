@@ -2,20 +2,20 @@
 #define _Dog_HPP_
 
 #include <iostream>
-#include "Animal.hpp"
+#include "A_Animal.hpp"
 #include "Brain.hpp"
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Dog : public Animal
+class	Dog : public A_Animal
 {
 	public	:
 		Dog ();
-		// Dog (Dog const &obj);
+		Dog (Dog const &obj);
 		~Dog ();
-		// Dog &operator= (const Dog &obj);
+		Dog &operator= (const Dog &obj);
 
 		void makeSound () const ;
 

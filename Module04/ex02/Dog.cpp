@@ -13,23 +13,26 @@ Dog::~Dog()
 	delete ptr1;
 }
 
-// Dog::Dog(Dog const &obj)
-// {
-// 	std::cout << "Copy Constructor Called" << std::endl;
-// 	if (this != &obj)
-// 		*this = obj;
-// }
+Dog::Dog(Dog const &obj)
+{
+	std::cout << "Copy Constructor Called" << std::endl;
+	if (this != &obj)
+	{
+		this->ptr1 = new Brain;
+		*(this->ptr1) = *(obj.ptr1);
+	}
+}
 
-// Dog	&Dog::operator= (const Dog &obj)
-// {
-// 	std::cout << "Dog :Copy Assignment Operator Called" << std::endl;
-// 	if (this != &obj)
-// 	{
-// 		this->ptr1 = new Brain;
-// 		*(this->ptr1) = *(obj.ptr1);
-// 	}
-// 	return (*this);
-// }
+Dog	&Dog::operator= (const Dog &obj)
+{
+	std::cout << "Dog :Copy Assignment Operator Called" << std::endl;
+	if (this != &obj)
+	{
+		this->ptr1 = new Brain;
+		*(this->ptr1) = *(obj.ptr1);
+	}
+	return (*this);
+}
 
 void Dog::makeSound() const
 {

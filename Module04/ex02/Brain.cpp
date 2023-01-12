@@ -16,13 +16,3 @@ Brain::Brain(Brain const &obj)
 	if (this != &obj)
 		*this = obj;
 }
-
-Brain	&Brain::operator= (const Brain &obj)
-{
-	std::cout << "Copy Assignment Operator Called" << std::endl;
-	if (this != &obj)
-	{
-		//lll
-	}
-	return (*this);
-}

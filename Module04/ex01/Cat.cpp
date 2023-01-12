@@ -29,8 +29,6 @@ Cat	&Cat::operator= (const Cat &obj)
 		this->type = obj.getType();
 		this->ptr = new Brain;
 		*(this->ptr) = *(obj.ptr);
-		//	this->attributes = obj.attributes;
-		//	...
 	}
 	return (*this);
 }
