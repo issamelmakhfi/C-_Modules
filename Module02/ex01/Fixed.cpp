@@ -48,3 +48,8 @@ float	Fixed::toFloat(void) const
 	float res = (float)fixed_P / pow(2, fractional_bits);
 	return (res);
 }
+std::ostream & operator<< (std::ostream &out,  Fixed const &c)
+{
+	out << c.toFloat();
+	return out;
+}
