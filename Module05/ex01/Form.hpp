@@ -30,7 +30,7 @@ class	Form
 		int getS_grade() const;
 		int getEx_grade() const;
 		void	FormInfo();
-		void	signFrom();
+		void	signForm(Bureaucrat &obj);
 
 
 	private	:

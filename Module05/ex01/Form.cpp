@@ -48,18 +48,14 @@ void	Form::beSigned(Bureaucrat &obj)
 		this->idnx = 0;
 		throw Form::GradeTooLowException();
 	}
-	else
-		std::cout << obj.getName() << " signed " << this->getName() << std::endl;
 }
 
-void	Form::signForm()
+void	Form::signForm(Bureaucrat &obj)
 {
-	if (this->)
-	{
-		std::cout
-	}
-	else
+	if (this->idnx)
 		std::cout << obj.getName() << " signed " << this->getName() << std::endl;
+	else
+		std::cout << obj.getName() << " couldn’t sign " << this->getName() << " because " << "Grade too low" << std::endl;
 }
 
 void Form::FormInfo()
