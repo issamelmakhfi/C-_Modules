@@ -3,9 +3,12 @@
 
 #include <iostream>
 #include <exception>
+#include "AForm.hpp"
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
+
+class AForm ;
 
 class	Bureaucrat
 {
@@ -26,11 +29,11 @@ class	Bureaucrat
 		int 	getGrade() const;
 		void	incrementGrade();
 		void	decrementGrade();
+		void	signForm(AForm &obj);
 
 	private	:
 		std::string const Name;
 		int grade;
-		int const hh;
 };
 
 // ******************************************************** //

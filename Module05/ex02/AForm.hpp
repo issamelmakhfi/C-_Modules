@@ -1,18 +1,22 @@
-#ifndef _Bureaucrat_HPP_
-#define _Bureaucrat_HPP_
+#ifndef _Form_HPP_
+#define _Form_HPP_
 
 #include <iostream>
-#include <exception>
+#include "Bureaucrat.hpp"
+
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	Bureaucrat
+class Bureaucrat;
+
+class	AForm
 {
 	public	:
-		Bureaucrat ();
-		Bureaucrat (std::string const _name, int grade);
-		~Bureaucrat ();
+		// AForm ();
+		AForm (std::string Name, int s_grade, int ex_grade);
+		virtual ~AForm () = 0;
+
 		class GradeTooHighException : public std::exception {
 			public :
 				const char * what () const throw();
@@ -22,21 +26,27 @@ class	Bureaucrat
 				const  char *what () const throw();
 		};
 
-		std::string const getName() const;
-		int 	getGrade() const;
-		void	incrementGrade();
-		void	decrementGrade();
+		void beSigned(Bureaucrat &obj);
+		std::string const getName();
+		bool getIndx();
+		int getS_grade() const;
+		int getEx_grade() const;
+		void	AFormInfo();
+		void	signAForm(Bureaucrat &obj);
+
 
 	private	:
 		std::string const Name;
-		int grade;
-		int const hh;
+		bool idnx;
+		int const s_grade;
+		int const ex_grade;
+		//	DataType	attributes.
 };
 
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //
 
-std::ostream & operator << (std::ostream &out, Bureaucrat const &obj);
+std::ostream &operator << (std::ostream &out, AForm &obj);
 
 #endif
