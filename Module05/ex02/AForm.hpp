@@ -13,7 +13,7 @@ class Bureaucrat;
 class	AForm
 {
 	public	:
-		// AForm ();
+		AForm ();
 		AForm (std::string Name, int s_grade, int ex_grade);
 		virtual ~AForm () = 0;
 
@@ -27,12 +27,13 @@ class	AForm
 		};
 
 		void beSigned(Bureaucrat &obj);
-		std::string const getName();
-		bool getIndx();
+		std::string const getName() const;
+		bool getIndx() const;
 		int getS_grade() const;
 		int getEx_grade() const;
 		void	AFormInfo();
 		void	signAForm(Bureaucrat &obj);
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
 
 	private	:

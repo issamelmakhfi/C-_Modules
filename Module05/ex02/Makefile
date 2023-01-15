@@ -6,9 +6,9 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC =  ShrubberyCreationForm.cpp main.cpp AForm.cpp Bureaucrat.cpp
+SRC =  ShrubberyCreationForm.cpp main.cpp AForm.cpp Bureaucrat.cpp  PresidentialPardonForm.cpp RobotomyRequestForm.cpp
 
-INC =  ShrubberyCreationForm.hpp AForm.hpp Bureaucrat.hpp
+INC =  ShrubberyCreationForm.hpp AForm.hpp Bureaucrat.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp
 
 OBJ = $(SRC:.cpp=.o) 
 

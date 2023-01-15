@@ -2,17 +2,17 @@
 
 Bureaucrat::Bureaucrat()
 {
-	std::cout << "Bureaucrat : Default Constructor Called" << std::endl;
+	// std::cout << "Bureaucrat : Default Constructor Called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat : Destructor Called" << std::endl;
+	// std::cout << "Bureaucrat : Destructor Called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string const _name, int grade) : Name(_name)
 {
-	std::cout << "Bureaucrat : Constructor Called" << std::endl;
+	// std::cout << "Bureaucrat : Constructor Called" << std::endl;
 	this->grade = grade;
 	if (this->getGrade() < 1)
 		throw Bureaucrat::GradeTooHighException();
@@ -64,4 +64,15 @@ void	Bureaucrat::signForm(AForm &obj)
 		std::cout << this->getName() << " signed " << obj.getName() << std::endl;
 	else
 		std::cout << this->getName() << " couldn’t sign " << obj.getName() << " because " << "Grade too low" << std::endl;
+}
+
+void	Bureaucrat::executeAForm(AForm const &form)
+{
+	if (this->getGrade() <= form.getEx_grade())
+	{
+		form.execute(*this);
+		std::cout << "\33[0;31m" << this->getName() << " excecuted " << form.getName() << "\33[0;m" <<std::endl;
+	}
+	else
+		throw Bureaucrat::GradeTooLowException();
 }

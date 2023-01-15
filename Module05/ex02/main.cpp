@@ -1,19 +1,27 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main()
 {
 	try {
 
-		// Bureaucrat Ghost("Ghost", 3);
-		// AForm wati9a("wati9at zawaj", 10, 20);
+		Bureaucrat Ghost("Ghost", 4);
+		PresidentialPardonForm p("home");
+		RobotomyRequestForm r("Robot");
 		ShrubberyCreationForm a("pop");
+		r.beSigned(Ghost);
+		p.beSigned(Ghost);
+		a.beSigned(Ghost);
+		Ghost.signForm(a);
+		Ghost.signForm(p);
+		Ghost.signForm(r);
+		Ghost.executeAForm(a);
+		Ghost.executeAForm(p);
+		Ghost.executeAForm(r);
 
-		// Ghost.incrementGrade();
-		// wati9a.beSigned(Ghost);
-		// Ghost.signForm(wati9a);
-		// a.tree();
 	}
 	catch (std::exception const &obj) {
 		std::cout << obj.what() << std::endl;

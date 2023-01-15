@@ -1,22 +1,22 @@
-#ifndef _ShrubberyCreationForm_HPP_
-#define _ShrubberyCreationForm_HPP_
+#ifndef _RobotomyRequestForm_HPP_
+#define _RobotomyRequestForm_HPP_
 
 #include <iostream>
 #include "AForm.hpp"
-#include <fstream>
-#include "Bureaucrat.hpp"
+
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
 
-class	ShrubberyCreationForm : public AForm
+
+class	RobotomyRequestForm : public AForm
 {
 	public	:
-		ShrubberyCreationForm ();
-		ShrubberyCreationForm (std::string target);
-		~ShrubberyCreationForm ();
+		RobotomyRequestForm ();
+		RobotomyRequestForm (std::string target);
+		~RobotomyRequestForm ();
 
-		void	execute(Bureaucrat const &executer) const;
+		void	execute(Bureaucrat const &executor) const;
 
 	private	:
 		std::string target;

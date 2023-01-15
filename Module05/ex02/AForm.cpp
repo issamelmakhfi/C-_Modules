@@ -1,15 +1,15 @@
 #include "AForm.hpp"
 
-// AForm::AForm()
-// {
-// 	std::cout << "AForm : Default Constructor Called" << std::endl;
-// 	this->ex_grade = 0;
-// 	this->
-// }
+AForm::AForm() :  s_grade(0), ex_grade(0)
+{
+	// std::cout << "AForm : Default Constructor Called" << std::endl;
+	// this->ex_grade = 0;
+	// this->s_grade = 0;
+}
 
 AForm::AForm (std::string  Name, int s_grade, int ex_grade) : Name(Name),  s_grade(s_grade), ex_grade(ex_grade) 
 {
-	std::cout << "AForm : Constructor Called" << std::endl;
+	// std::cout << "AForm : Constructor Called" << std::endl;
 	if (this->getS_grade() < 1 || this->getEx_grade() < 1)
 		throw AForm::GradeTooHighException();
 	else if (this->getS_grade() > 150 || this->getEx_grade() > 150)
@@ -18,15 +18,15 @@ AForm::AForm (std::string  Name, int s_grade, int ex_grade) : Name(Name),  s_gra
 
 AForm::~AForm()
 {
-	std::cout << "AForm : Destructor Called" << std::endl;
+	// std::cout << "AForm : Destructor Called" << std::endl;
 }
 
-std::string const AForm::getName()
+std::string const AForm::getName() const
 {
 	return (this->Name);
 }
 
-bool AForm::getIndx()
+bool AForm::getIndx() const
 {
 	return (this->idnx);
 }
@@ -43,7 +43,9 @@ int AForm::getEx_grade() const
 
 void	AForm::beSigned(Bureaucrat &obj)
 {
-	if (obj.getGrade() > this->getS_grade())
+	if (obj.getGrade() <= this->getS_grade())
+		this->idnx = 1;
+	else
 	{
 		this->idnx = 0;
 		throw AForm::GradeTooLowException();
@@ -60,7 +62,7 @@ void	AForm::signAForm(Bureaucrat &obj)
 
 void AForm::AFormInfo()
 {
-	std::cout << "AForm's Name                  : " << this->getName() << std::endl;
+	std::cout << "AForm's Name                 : " << this->getName() << std::endl;
 	std::cout << "Signed                       : " << this->idnx << std::endl;
 	std::cout << "Grade required               : " << this->getS_grade() << std::endl;
 	std::cout << "Grade required to execute it : " << this->getEx_grade();
