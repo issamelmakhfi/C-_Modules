@@ -57,3 +57,11 @@ const  char * Bureaucrat::GradeTooLowException::what () const throw() {
 const  char * Bureaucrat::GradeTooHighException::what () const throw() {
 	return ("Grade Too High");
 }
+
+void	Bureaucrat::signForm(Form &obj)
+{
+	if (obj.getIndx())
+		std::cout << this->getName() << " signed " << obj.getName() << std::endl;
+	else
+		std::cout << this->getName() << " couldn’t sign " << obj.getName() << " because " << "Grade too low" << std::endl;
+}
