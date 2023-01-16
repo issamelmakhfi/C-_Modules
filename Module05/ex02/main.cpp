@@ -21,6 +21,9 @@ int main()
 		Ghost.executeAForm(a);
 		Ghost.executeAForm(p);
 		Ghost.executeAForm(r);
+		std::cout << p;
+		std::cout << r;
+		std::cout << a;
 
 	}
 	catch (std::exception const &obj) {
