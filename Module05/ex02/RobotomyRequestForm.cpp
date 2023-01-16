@@ -17,10 +17,13 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
+	time_t t;
+
+	srand((unsigned) time(&t));
 	if (this->getIndx() && executor.getGrade() <= this->getS_grade())
 	{
 		if ((rand() % 2) == 1)
-			std::cout << "\33[0;32m" << this->target << " has been robotomized successfully 50%% of the time\33[0m" << std::endl;
+			std::cout << "\33[0;32m" << this->target << " has been robotomized successfully 50% of the time\33[0m" << std::endl;
 		else
 			std::cout << "\33[0;31mThe robotomy failed\33[0;m" << std::endl;
 	}

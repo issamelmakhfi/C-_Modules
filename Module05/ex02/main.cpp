@@ -4,6 +4,19 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// int main () {
+//    time_t t;
+//    srand((unsigned) time(&t));
+//    printf("%d\n", rand() % 2);
+//    return(0);
+// }
+
 int main()
 {
 	try {
