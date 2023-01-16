@@ -11,6 +11,8 @@ int main()
 		Ghost.incrementGrade();
 		wati9a.beSigned(Ghost);
 		Ghost.signForm(wati9a);
+		std::cout << wati9a;
+
 	}
 	catch (std::exception const &obj) {
 		std::cout << obj.what() << std::endl;

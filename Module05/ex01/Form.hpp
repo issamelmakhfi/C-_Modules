@@ -13,7 +13,7 @@ class Bureaucrat;
 class	Form
 {
 	public	:
-		// Form ();
+		Form ();
 		Form (std::string Name, int s_grade, int ex_grade);
 		~Form ();
 

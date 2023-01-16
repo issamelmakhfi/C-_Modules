@@ -1,11 +1,9 @@
 #include "Form.hpp"
 
-// Form::Form()
-// {
-// 	std::cout << "Form : Default Constructor Called" << std::endl;
-// 	this->ex_grade = 0;
-// 	this->
-// }
+Form::Form() : Name(NULL), s_grade(0), ex_grade(0)
+{
+	std::cout << "Form : Default Constructor Called" << std::endl;
+}
 
 Form::Form (std::string  Name, int s_grade, int ex_grade) : Name(Name),  s_grade(s_grade), ex_grade(ex_grade) 
 {
@@ -43,7 +41,9 @@ int Form::getEx_grade() const
 
 void	Form::beSigned(Bureaucrat &obj)
 {
-	if (obj.getGrade() > this->getS_grade())
+	if (obj.getGrade() <= this->getS_grade())
+		this->idnx = 1;
+	else
 	{
 		this->idnx = 0;
 		throw Form::GradeTooLowException();
@@ -74,9 +74,9 @@ std::ostream &operator << (std::ostream &out, Form &obj)
 }
 
 const  char * Form::GradeTooLowException::what () const throw() {
-	return ("Form : Grade Too Low");
+	return ("Grade Too Low");
 }
 
 const  char * Form::GradeTooHighException::what () const throw() {
-	return ("Form : Grade Too High");
+	return ("Grade Too High");
 }
