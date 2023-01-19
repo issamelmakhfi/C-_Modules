@@ -6,11 +6,13 @@ int main(int ac, char **av)
 	try {
 		if (ac != 2)
 			throw "Bad Arguments :(";
+		
 		convert arg(av[1]);
+
 		arg.parssArg();
+		arg.printInfo();
 	}
-	catch (char const *mssg)
-	{
+	catch (char const *mssg) {
 		std::cout << mssg << std::endl;
 	}
 

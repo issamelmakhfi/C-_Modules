@@ -2,7 +2,6 @@
 
 convert::convert(char *av)
 {
-	std::cout << "convert : Default Constructor Called" << std::endl;
 	this->str = av;
 }
 
@@ -35,6 +34,8 @@ bool	convert::getType()
 	if (indx1 == -1)
 		return false;
 	indx2 = str.find("f", indx1);
+	if (indx2 - indx1 == 1)
+		return false;
 	if (indx2 != -1)
 		str.erase(indx2, 1);
 	tmp = str;
@@ -46,10 +47,14 @@ bool	convert::getType()
 
 bool	convert::checkInff()
 {
-	if (!this->str.compare("-inf") || !this->str.compare("+inf"))
-		return true;
-	else if (!this->str.compare("-inff") || !this->str.compare("+inff"))
+	if (!this->str.compare("-inf") || !this->str.compare("+inf") || !this->str.compare("nan"))
 	{
+		this->check = 1;
+		return true;
+	}
+	else if (!this->str.compare("-inff") || !this->str.compare("+inff") || !this->str.compare("nanf"))
+	{
+		this->check = 1;
 		this->str.erase(str.length() - 1, 1);
 		return true;
 	}
@@ -58,54 +63,57 @@ bool	convert::checkInff()
 
 bool	convert::is_char()
 {
-	if (str.length() > 1)
-		throw "Bad Arguments..p";
-	return (str.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") == std::string::npos);
+	if (str.length() == 1 && isprint(str[0]))
+		return true;
+	return false;
 }
 
 void	convert::parssArg()
 {
-
 	if (checkInff() == true)
-		goto jump ;
-	if (is_char() == true)
-		goto jump;
-	if (getType() == false)
-		throw "Bad Arguments...f";
-	jump :
-	ss << this->str;
-	ss >> _double;
+	{
+		ss << this->str;
+		ss >> _double;
+	}
+	else if (is_char() == true)
+	{
+		ss << (int)this->str[0];
+		ss >> _double;
+	}
+	else if (getType() == true)
+	{
+		ss << this->str;
+		ss >> _double;
+		if (_double < -2147483648 || _double > 2147483647)
+			throw "INT LIMITE";
+	}
+	else
+		throw "Bad Arguments";
 	if (ss.fail())
 	{
 		ss.clear();
 		throw "Bad Arguments!";
 	}
+}
+
+void	convert::printInfo()
+{
+	if (isprint((int)_double))
+		std::cout << "char   : '" << (char)this->_double << "'" <<std::endl;
+	else if (!this->check)
+		std::cout << "char   : " << "Non displayable" << std::endl;
 	else
-	{
+		std::cout << "char   : " << "Impossible" << std::endl;
+	if (!this->check)
+		std::cout << "int    : " << this->_double << std::endl;
+	else
+		std::cout << "int    : " << "Impossible" << std::endl;
+	if ((int)this->_double == (float)this->_double)
+		std::cout << "float  : " << this->_double << ".0f" << std::endl;
+	else
+		std::cout << "float  : " << this->_double << "f" << std::endl;
+	if ((int)this->_double == this->_double)
+		std::cout << "double : " << this->_double << ".0" << std::endl;
+	else
 		std::cout << "double : " << this->_double << std::endl;
-		return ;
-	}
-}
-
-convert::~convert()
-{
-	std::cout << "convert : Destructor Called" << std::endl;
-}
-
-convert::convert(convert const &obj)
-{
-	std::cout << "Copy Constructor Called" << std::endl;
-	if (this != &obj)
-		*this = obj;
-}
-
-convert	&convert::operator= (const convert &obj)
-{
-	std::cout << "Copy Assignment Operator Called" << std::endl;
-	if (this != &obj)
-	{
-		//	this->attributes = obj.attributes;
-		//	...
-	}
-	return (*this);
 }

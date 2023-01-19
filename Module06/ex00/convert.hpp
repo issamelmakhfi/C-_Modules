@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <limits>
 
 // ******************************************************** //
 //                         CLASSES                         //
@@ -12,9 +13,6 @@ class	convert
 {
 	public	:
 		convert (char *av);
-		convert (convert const &obj);
-		~convert ();
-		convert &operator= (const convert &obj);
 
 		void	parssArg();
 		bool	is_digit();
@@ -22,14 +20,12 @@ class	convert
 		bool	checkSign();
 		bool 	checkInff();
 		bool	is_char();
+		void	printInfo();
 
 	private	:
 		std::stringstream ss;
 		std::string str;
-		// char _chr;
-		// char	sig;
-		// int	_int;
-		// float _float;
+		int		check;
 		double _double;
 		//	DataType	attributes.
 };
