@@ -1,9 +1,9 @@
 #include "Data.hpp"
 
-// void leak()
-// {
-// 	system("leaks Serialization");
-// }
+void leak()
+{
+	system("leaks Serialization");
+}
 
 int main()
 {
@@ -20,6 +20,5 @@ int main()
     std::cout << "Name :" << ptr2->name << std::endl;
     std::cout << "Age  :" << ptr2->age << std::endl;
     delete ptr;
-    // atexit(leak);
 	return (0);
 }
