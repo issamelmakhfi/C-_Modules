@@ -3,6 +3,11 @@
 #include "B.hpp"
 #include "C.hpp"
 
+void leak()
+{
+	system("leaks Base");
+}
+
 int main()
 {
 	Base *p = generate();
@@ -10,5 +15,6 @@ int main()
 	identify(*p);
 
 	delete p;
+	atexit(leak);
 	return (0);
 }

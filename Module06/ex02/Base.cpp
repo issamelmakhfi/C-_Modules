@@ -22,13 +22,22 @@ Base	*generate(void)
 
 	switch	(indx) {
 		case	0:
+			delete r_B;
+			delete r_C;
 			return (r_A);
 		case	1:
+			delete r_A;
+			delete r_C;
 			return (r_B);
 		case	2:
+			delete r_B;
+			delete r_A;
 			return	(r_C);
 		default:
-			return (r_A);
+			delete r_A;
+			delete r_B;
+			delete r_C;
+			return (NULL);
 	}
 }
 
