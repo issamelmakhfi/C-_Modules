@@ -2,30 +2,48 @@
 #define _Array_HPP_
 
 #include <iostream>
+#include <exception>
 
 // ******************************************************** //
 //                         CLASSES                         //
 // ****************************************************** //
-template <typename T>
+template <class T>
 class	Array
 {
 	public	:
-		Array () {
+		Array ()
+		{
 			arr = new T;
 		}
-		Array (unsigned int n) {
+		Array (unsigned int n)
+		{
 			for (size_t i = 0; i < n; i++)
-			{
-				arr[n] = new T;
-			}
+    		{
+        		arr = new T;
+    		}
 		}
-		Array &operator= (const Array &obj) {
+		Array &operator= (const Array &obj)
+		{
 			arr = new T;
-			*arr = *(obj.arr);
+    		*arr = *(obj.arr);
 		}
-		size_t size(void) {
+		size_t size(void)
+		{
 			size_t len = sizeof(arr) / sizeof(arr[0]);
-			return len;
+    		return len;
+		}
+		class BadIndex : public std::exception {
+			public:
+				const char *what() const throw(){
+					return "Bad Index";
+				}
+		};
+		
+		T &operator[] (size_t index)
+		{
+			if (index > size() || index < size())
+				throw BadIndex();
+			return (arr[index]);
 		}
 
 	private	:
