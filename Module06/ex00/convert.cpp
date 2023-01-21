@@ -99,7 +99,7 @@ void	convert::parssArg()
 void	convert::printInfo()
 {
 	if (isprint((int)_double))
-		std::cout << "char   : '" << (char)this->_double << "'" <<std::endl;
+		std::cout << "char   : '" << static_cast<char>(this->_double) << "'" <<std::endl;
 	else if (!this->check)
 		std::cout << "char   : " << "Non displayable" << std::endl;
 	else
@@ -108,11 +108,11 @@ void	convert::printInfo()
 		std::cout << "int    : " << this->_double << std::endl;
 	else
 		std::cout << "int    : " << "Impossible" << std::endl;
-	if ((int)this->_double == (float)this->_double)
+	if ((int)this->_double == static_cast<float>(this->_double))
 		std::cout << "float  : " << this->_double << ".0f" << std::endl;
 	else
 		std::cout << "float  : " << this->_double << "f" << std::endl;
-	if ((int)this->_double == this->_double)
+	if (static_cast<int>(this->_double) == this->_double)
 		std::cout << "double : " << this->_double << ".0" << std::endl;
 	else
 		std::cout << "double : " << this->_double << std::endl;
