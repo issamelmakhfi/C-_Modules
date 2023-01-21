@@ -10,10 +10,10 @@
 //                         CLASSES                         //
 // ****************************************************** //
 template <typename T, typename container = std::deque<T> >
-class	MutanStack : public std::stack<T, container>
+class	MutantStack : public std::stack<T, container>
 {
 	public	:
-		typedef typename std::stack<T, container>::container_type::iterator	iterator;
+		typedef typename container::iterator	iterator;
 		iterator	begin()
 		{
 			return this->c.begin();
