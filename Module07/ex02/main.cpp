@@ -4,9 +4,14 @@
 
 #define MAX_VAL 750
 
+// void leak()
+// {
+// 	system("leaks Array");
+// }
+
 int main(int, char**)
 {
-    Array<int> numbers;
+    Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
 
     srand(time(NULL));
@@ -18,9 +23,8 @@ int main(int, char**)
     }
     //SCOPE
     {
-        Array<int> tmp = numbers;
+        Array<int> tmp;
         Array<int> test(tmp);
-		(void)test;
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -53,5 +57,6 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;//
+    // atexit(leak);
     return 0;
 }
