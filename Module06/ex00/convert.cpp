@@ -105,13 +105,13 @@ void	convert::printInfo()
 	else
 		std::cout << "char   : " << "Impossible" << std::endl;
 	if (!this->check)
-		std::cout << "int    : " << this->_double << std::endl;
+		std::cout << "int    : " << static_cast<int>(this->_double) << std::endl;
 	else
 		std::cout << "int    : " << "Impossible" << std::endl;
 	if ((int)this->_double == static_cast<float>(this->_double))
 		std::cout << "float  : " << this->_double << ".0f" << std::endl;
 	else
-		std::cout << "float  : " << this->_double << "f" << std::endl;
+		std::cout << "float  : " << static_cast<float>(this->_double) << "f" << std::endl;
 	if (static_cast<int>(this->_double) == this->_double)
 		std::cout << "double : " << this->_double << ".0" << std::endl;
 	else
