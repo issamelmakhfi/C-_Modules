@@ -12,8 +12,6 @@ class	Base
 	public	:
 		virtual ~Base ();
 
-	private	:
-		//	DataType	attributes.
 };
 
 Base * generate(void);

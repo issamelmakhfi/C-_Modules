@@ -5,7 +5,7 @@
 
 Base::~Base()
 {
-	std::cout << "Base : Destructor Called" << std::endl;
+	// std::cout << "Base : Destructor Called" << std::endl;
 }
 
 
