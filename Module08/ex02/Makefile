@@ -1,4 +1,4 @@
-NAME = MutanStack 
+NAME = MutantStack 
 
 CXXFLAGS = -Wall -Wextra -Werror 
 
@@ -6,9 +6,9 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC = main.cpp 
+SRC = main.cpp
 
-INC = MutanStack.hpp 
+INC = MutantStack.hpp 
 
 OBJ = $(SRC:.cpp=.o) 
 
