@@ -14,7 +14,11 @@
 class	Span
 {
 	public	:
+		Span ();
 		Span (unsigned int N);
+		Span (Span const &obj);
+		Span &operator= (Span const &obj);
+		~Span ();
 		class SpanExcp : public std::exception {
 			const char *what() const throw();
 		};

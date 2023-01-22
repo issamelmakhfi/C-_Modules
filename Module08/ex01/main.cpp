@@ -1,4 +1,5 @@
 #include "Span.hpp"
+#include <array>
 
 int main()
 {
@@ -16,7 +17,7 @@ int main()
 		std::cout << ar.shortestSpan() << std::endl;
 		std::cout << ar.longestSpan() << std::endl;
 	}
-	catch (std::exception &e)
+	catch (std::exception const &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
