@@ -1,9 +1,9 @@
 #include "Data.hpp"
 
-void leak()
-{
-	system("leaks Serialization");
-}
+// void leak()
+// {
+// 	system("leaks Serialization");
+// }
 
 int main()
 {
