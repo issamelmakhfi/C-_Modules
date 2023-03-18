@@ -63,10 +63,8 @@ int main(int ac, char **av)
 		}
 		i++;
 	}
-	while (!stack.empty())
-	{
-		std::cout << stack.top();
-		stack.pop();
-	}
+	if (stack.size() > 1)
+		errorHandler("BAD FORMAT");
+	std::cout << stack.top();
 	return (0);
 }
