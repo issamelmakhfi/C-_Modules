@@ -31,10 +31,9 @@ btc	&btc::operator= (const btc &obj)
 
 void	btc::parssFile(char *FileName)
 {
-	std::string hoho;
 	this->data.open(FileName, std::ios::in);
 	if (!this->data)
-		errorHandler("FILE DOES NOT OPPEN");
+		errorHandler("FILE DOES NOT OPEN");
 }
 
 void	btc::errorHandler(std::string mssg)
@@ -47,10 +46,6 @@ void	btc::readFromFile()
 {
 	std::string	test;
 
-	// while (1)
-	// {
-		// getline( std::cin, test);
-	// 	if (this->data.eof())
-	// 		break;
-	// }
+	while (getline(this->data, test))
+		std::cout << test << std::endl;
 }
