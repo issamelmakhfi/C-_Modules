@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
+#include <map>
+#include <ctime>
 
 // ******************************************************** //
 //                         CLASSES                         //
@@ -23,7 +25,8 @@ class	btc
 
 	private	:
 		std::fstream data;
-		//	DataType	attributes.
+		std::fstream input;
+		std::map<std::string, std::string> map;
 };
 
 // ******************************************************** //

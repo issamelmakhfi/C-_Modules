@@ -31,8 +31,9 @@ btc	&btc::operator= (const btc &obj)
 
 void	btc::parssFile(char *FileName)
 {
-	this->data.open(FileName, std::ios::in);
-	if (!this->data)
+	this->input.open(FileName, std::ios::in);
+	this->data.open("data.csv", std::ios::in);
+	if (!this->data || !this->input)
 		errorHandler("FILE DOES NOT OPEN");
 }
 
@@ -45,7 +46,19 @@ void	btc::errorHandler(std::string mssg)
 void	btc::readFromFile()
 {
 	std::string	test;
+	char	*token;
+	char	*tmp;
+	struct tm tm;
 
-	while (getline(this->data, test))
-		std::cout << test << std::endl;
+	while (getline(this->input, test))
+	{
+		token = strtok(&test[0], "|");
+		tmp = token;
+		std::cout << tmp << std::endl;
+		if (!strptime(tmp, "%Y-%m-%d ", &tm))
+			std::cout << "HHHHHH" << std::endl;
+		token = strtok(NULL, "|");
+		map[tmp] = token;
+		// std::cout << tmp << "|" << token << std::endl;
+	}
 }
