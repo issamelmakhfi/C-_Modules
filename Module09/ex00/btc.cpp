@@ -2,12 +2,12 @@
 
 btc::btc()
 {
-	std::cout << "btc : Default Constructor Called" << std::endl;
+	// std::cout << "btc : Default Constructor Called" << std::endl;
 }
 
 btc::~btc()
 {
-	std::cout << "btc : Destructor Called" << std::endl;
+	// std::cout << "btc : Destructor Called" << std::endl;
 }
 
 btc::btc(btc const &obj)
@@ -28,37 +28,59 @@ btc	&btc::operator= (const btc &obj)
 	return (*this);
 }
 
+// btc::runtime_error::runtime_error(const std::string &what_arg)
+// {
+// 	std::cout << what_arg << std::endl;
+// }
 
 void	btc::parssFile(char *FileName)
 {
 	this->input.open(FileName, std::ios::in);
 	this->data.open("data.csv", std::ios::in);
 	if (!this->data || !this->input)
-		errorHandler("FILE DOES NOT OPEN");
+		throw std::runtime_error("FILE DOES NOT OPEN :_");
 }
 
-void	btc::errorHandler(std::string mssg)
+void	btc::readFromInput()
 {
-	std::cout << mssg << std::endl;
-	exit(1);
+	std::string	str;
+	std::string	substring;
+	char	*token;
+	struct tm tm;
+
+	while (getline(this->input, str))
+	{
+		substring = str.substr(0, 4);
+		this->year = atoi(substring.c_str());
+		substring = str.substr(4, 1);
+		this->dash += substring;
+		substring = str.substr(5, 2);
+		this->month = atoi(substring.c_str());
+		substring = str.substr(7, 1);
+		this->dash += substring;
+		substring = str.substr(8);
+		this->day = atoi(substring.c_str());
+		token = strtok(&str[0], "|");
+	}
 }
 
 void	btc::readFromFile()
 {
-	std::string	test;
+	std::string	str;
 	char	*token;
-	char	*tmp;
-	struct tm tm;
+	char 	*tmp;
 
-	while (getline(this->input, test))
+	while (getline(this->data, str))
 	{
-		token = strtok(&test[0], "|");
+		token = strtok(&str[0], ",");
 		tmp = token;
-		std::cout << tmp << std::endl;
-		if (!strptime(tmp, "%Y-%m-%d ", &tm))
-			std::cout << "HHHHHH" << std::endl;
-		token = strtok(NULL, "|");
+		token = strtok(NULL, ",");
 		map[tmp] = token;
-		// std::cout << tmp << "|" << token << std::endl;
 	}
+	this->it = map.begin();
+	// while (this->it != map.end())
+	// {
+	// 	std::cout << it->first << "," << it->second << std::endl;
+	// 	++it;
+	// }
 }

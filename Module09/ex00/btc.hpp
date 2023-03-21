@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
+#include <string>
 #include <map>
 #include <ctime>
 
@@ -20,13 +21,18 @@ class	btc
 		btc &operator= (const btc &obj);
 
 		void	parssFile(char *FileName);
-		void	errorHandler(std::string mssg);
 		void	readFromFile();
+		void	readFromInput();
 
 	private	:
+		int	year;
+		int month;
+		int	day;
+		std::string dash;
 		std::fstream data;
 		std::fstream input;
 		std::map<std::string, std::string> map;
+		std::map<std::string, std::string>::iterator it;
 };
 
 // ******************************************************** //

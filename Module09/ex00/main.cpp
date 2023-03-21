@@ -2,12 +2,18 @@
 
 int main(int ac, char **av)
 {
-	btc btc;
+	try {
+		btc btc;
 
-	if (ac != 2)
-		btc.errorHandler("Error: could not open file.");
-	btc.parssFile(av[1]);
-	btc.readFromFile();
+		if (ac != 2)
+			throw std::runtime_error("Error: could not open file.");
+		btc.parssFile(av[1]);
+		btc.readFromFile();
+		btc.readFromInput();
+	}
+	catch(std::runtime_error &e) {
+		std::cout << e.what() << std::endl;
+	}
 
 
 	return (0);
