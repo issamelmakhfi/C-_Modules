@@ -23,11 +23,15 @@ class	btc
 		void	parssFile(char *FileName);
 		void	readFromFile();
 		void	readFromInput();
+		void	parssDay();
+		void	parssYear(std::string year);
+		void	parssMonth(std::string month);
 
 	private	:
-		int	year;
-		int month;
-		int	day;
+		std::string	year;
+		std::string month;
+		std::string	day;
+		std::string value;
 		std::string dash;
 		std::fstream data;
 		std::fstream input;
@@ -38,5 +42,6 @@ class	btc
 // ******************************************************** //
 //                        FUNCTIONS                        //
 // ****************************************************** //
+
 
 #endif
