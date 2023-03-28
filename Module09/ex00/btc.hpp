@@ -16,9 +16,7 @@ class	btc
 {
 	public	:
 		btc ();
-		btc (btc const &obj);
 		~btc ();
-		btc &operator= (const btc &obj);
 
 		void	parssFile(char *FileName);
 		void	readFromFile();

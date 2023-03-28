@@ -12,24 +12,6 @@ btc::~btc()
 	// std::cout << "btc : Destructor Called" << std::endl;
 }
 
-btc::btc(btc const &obj)
-{
-	std::cout << "Copy Constructor Called" << std::endl;
-	if (this != &obj)
-		*this = obj;
-}
-
-btc	&btc::operator= (const btc &obj)
-{
-	std::cout << "Copy Assignment Operator Called" << std::endl;
-	if (this != &obj)
-	{
-		//	this->attributes = obj.attributes;
-		//	...
-	}
-	return (*this);
-}
-
 void	btc::parssFile(char *FileName)
 {
 	this->input.open(FileName, std::ios::in);
@@ -117,13 +99,13 @@ void	btc::readFromFile()
 void	btc::parssYear()
 {
 	if (!isDigit(year) || atoi(year.c_str()) <= 1983)
-		throw std::runtime_error ("ERROR: DATE NOT VALID-");
+		throw std::runtime_error ("ERROR: DATE NOT VALID");
 }
 
 void	btc::parssMonth()
 {
 	if (!isDigit(month) || atoi(month.c_str()) < 1 || atoi(month.c_str()) > 12)
-		throw std::runtime_error("ERROR: DATE NOT VALID6");
+		throw std::runtime_error("ERROR: DATE NOT VALID");
 }
 
 void	contPipe(std::string str)
@@ -140,7 +122,7 @@ void	contPipe(std::string str)
 		i++;
 	}
 	if (cont > 1)
-		throw std::runtime_error("ERROR:DATE NOT VALID *");
+		throw std::runtime_error("ERROR:DATE NOT VALID");
 }
 
 void	btc::parssDay()
@@ -149,25 +131,31 @@ void	btc::parssDay()
 
 	tmp = rtrim(day, "|");
 	tmp = rtrim(tmp, WHITESPACE);
-	std::cout << tmp << std::endl;
+	for (size_t i = 0;i < dash.size();i++)
+	{
+		if (dash[i] != '-')
+			throw std::runtime_error("ERROR:DATE NOT VALID");
+	}
+	if (this->dash.size() != 2)
+		throw std::runtime_error("ERROR:DATE NOT VALID");
 	if (!isDigit(tmp) || tmp.size() > 2)
-		throw std::runtime_error("ERROR:DATE NOT VALID0");
+		throw std::runtime_error("ERROR:DATE NOT VALID");
 	if (atoi(month.c_str()) >= 1 && atoi(month.c_str()) < 8 && atoi(month.c_str()) % 2 == 0)
 	{
 		if (atoi(tmp.c_str()) < 1 || atoi(tmp.c_str()) > 30)
-			throw std::runtime_error("ERROR: DATE NOT VALID1");
+			throw std::runtime_error("ERROR: DATE NOT VALID");
 	}
 	else
 	{
 		if (atoi(tmp.c_str()) < 1 || atoi(tmp.c_str()) > 31)
-			throw std::runtime_error("ERROR: DATE NOT VALID1");
+			throw std::runtime_error("ERROR: DATE NOT VALID");
 	}
 	if (atoi(this->year.c_str()) % 4 != 0 || (atoi(this->year.c_str()) % 100 == 0 && atoi(this->year.c_str()) % 400 != 0))
 	{
 		if (atoi(this->month.c_str()) == 02)
 		{
 			if (atoi(tmp.c_str()) < 1 ||  atoi(tmp.c_str()) > 28)
-				throw std::runtime_error("ERROR: DATE NOT VALID1");
+				throw std::runtime_error("ERROR: DATE NOT VALID");
 		}
 	}
 	else
@@ -175,7 +163,7 @@ void	btc::parssDay()
 		if (atoi(this->month.c_str()) == 02)
 		{
 			if (atoi(this->day.c_str()) < 1 ||  atoi(this->day.c_str()) > 29)
-				throw std::runtime_error("ERROR: DATE NOT VALID1");
+				throw std::runtime_error("ERROR: DATE NOT VALID");
 		}
 	}
 }
