@@ -24,22 +24,44 @@ void	btc::parssFile(char *FileName)
 
 void	btc::readFromInput()
 {
+	int	i;
 	std::string	str;
+	std::map<std::string, std::string>::iterator low;
+	std::map<std::string, std::string>::iterator it = map.begin();
 
+	// if (low != map.end())
+	// std::cout << low->first << std::endl ;
 	while (getline(this->input, str))
 	{
-		this->year = str.substr(0, 4);
-		this->dash += str.substr(4, 1);
-		this->month = str.substr(5, 2);
-		this->dash += str.substr(7, 1);
-		this->day = str.substr(8, str.find_last_of("|") - 8 + 1);
+		i = 0;
+		while (str[i] == ' ')
+			i++;
+		this->year = str.substr(i, 4);
+		this->dash += str.substr(i + 4, 1);
+		this->month = str.substr(i + 5, 2);
+		this->dash += str.substr(i + 7, 1);
+		this->day = str.substr(i + 8, str.find_last_of("|") - (8 + i) + 1);
 		this->value = str.substr(str.find_first_of("|") + 1);
-
-		btc::parssDay();
-		btc::parssValue();
-		btc::parssYear();
-		btc::parssMonth();
-		break;
+		try {
+			btc::parssDay();
+			btc::parssValue();
+			btc::parssYear();
+			btc::parssMonth();
+			// low = map.lower_bound(date);
+			std::sort(map.begin(), map.end(), std::greater<int>());
+			while (it != map.end())
+			{
+				std::cout << "key: " << it->first << "value: " << it->second << std::endl;
+				++it;
+			}
+			exit(1);
+			std::cout << date << "  ====> " << this->val << " = " << atof(map[low->first].c_str()) * this->val << std::endl;
+		}
+		catch (std::runtime_error &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		this->dash = "";
 	}
 }
 
@@ -69,8 +91,14 @@ void	btc::parssValue()
 	{
 		if (tmp[i] == ',')
 			cont++;
+		if (tmp[i] == '-')
+			throw std::runtime_error("Error:  not a positive number");
 		if ((!isdigit(tmp[i]) && tmp[i] != '.') || cont > 1)
-			throw std::runtime_error("ERROR: DATE NOT VALID");
+			throw std::runtime_error("Error: Bad input");
+		if (atof(tmp.c_str()) > 1000)
+			throw std::runtime_error("Error: too large number");
+		if (atof(tmp.c_str()) < 0)
+			throw std::runtime_error("Error: too small number");
 		i++;
 	}
 	this->val = atof(tmp.c_str());
@@ -89,23 +117,18 @@ void	btc::readFromFile()
 		map[tmp] = token;
 	}
 	this->it = map.begin();
-	// while (this->it != map.end())
-	// {
-	// 	std::cout << it->first << "," << it->second << std::endl;
-	// 	++it;
-	// }
 }
 
 void	btc::parssYear()
 {
 	if (!isDigit(year) || atoi(year.c_str()) <= 1983)
-		throw std::runtime_error ("ERROR: DATE NOT VALID");
+		throw std::runtime_error ("Error: Bad input");
 }
 
 void	btc::parssMonth()
 {
 	if (!isDigit(month) || atoi(month.c_str()) < 1 || atoi(month.c_str()) > 12)
-		throw std::runtime_error("ERROR: DATE NOT VALID");
+		throw std::runtime_error("Error: Bad input");
 }
 
 void	contPipe(std::string str)
@@ -122,7 +145,7 @@ void	contPipe(std::string str)
 		i++;
 	}
 	if (cont > 1)
-		throw std::runtime_error("ERROR:DATE NOT VALID");
+		throw std::runtime_error("Error: Bad input");
 }
 
 void	btc::parssDay()
@@ -131,31 +154,31 @@ void	btc::parssDay()
 
 	tmp = rtrim(day, "|");
 	tmp = rtrim(tmp, WHITESPACE);
+	if (this->dash.size() != 2)
+		throw std::runtime_error("Error: Bad input");
 	for (size_t i = 0;i < dash.size();i++)
 	{
 		if (dash[i] != '-')
-			throw std::runtime_error("ERROR:DATE NOT VALID");
+			throw std::runtime_error("Error: Bad input");
 	}
-	if (this->dash.size() != 2)
-		throw std::runtime_error("ERROR:DATE NOT VALID");
 	if (!isDigit(tmp) || tmp.size() > 2)
-		throw std::runtime_error("ERROR:DATE NOT VALID");
+		throw std::runtime_error("Error: Bad input");
 	if (atoi(month.c_str()) >= 1 && atoi(month.c_str()) < 8 && atoi(month.c_str()) % 2 == 0)
 	{
 		if (atoi(tmp.c_str()) < 1 || atoi(tmp.c_str()) > 30)
-			throw std::runtime_error("ERROR: DATE NOT VALID");
+			throw std::runtime_error("Error: Bad input");
 	}
 	else
 	{
 		if (atoi(tmp.c_str()) < 1 || atoi(tmp.c_str()) > 31)
-			throw std::runtime_error("ERROR: DATE NOT VALID");
+			throw std::runtime_error("Error: Bad input");
 	}
 	if (atoi(this->year.c_str()) % 4 != 0 || (atoi(this->year.c_str()) % 100 == 0 && atoi(this->year.c_str()) % 400 != 0))
 	{
 		if (atoi(this->month.c_str()) == 02)
 		{
 			if (atoi(tmp.c_str()) < 1 ||  atoi(tmp.c_str()) > 28)
-				throw std::runtime_error("ERROR: DATE NOT VALID");
+				throw std::runtime_error("Error: Bad input");
 		}
 	}
 	else
@@ -163,9 +186,10 @@ void	btc::parssDay()
 		if (atoi(this->month.c_str()) == 02)
 		{
 			if (atoi(this->day.c_str()) < 1 ||  atoi(this->day.c_str()) > 29)
-				throw std::runtime_error("ERROR: DATE NOT VALID");
+				throw std::runtime_error("Error: Bad input");
 		}
 	}
+	this->date = this->year + this->dash[0] + this->month + this->dash[1] + tmp;
 }
 
  

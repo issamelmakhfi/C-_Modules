@@ -2,7 +2,7 @@
 
 int main(int ac, char **av)
 {
-	try {
+	// try {
 		btc btc;
 
 		if (ac != 2)
@@ -10,10 +10,10 @@ int main(int ac, char **av)
 		btc.parssFile(av[1]);
 		// btc.readFromFile();
 		// btc.readFromInput();
-	}
-	catch(std::runtime_error &e) {
-		std::cout << e.what() << std::endl;
-	}
+	// }
+	// catch(std::runtime_error &e) {
+		// std::cout << e.what() << std::endl;
+	// }
 
 
 	return (0);
