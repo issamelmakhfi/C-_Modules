@@ -24,8 +24,9 @@ class	btc
 		void	readFromFile();
 		void	readFromInput();
 		void	parssDay();
-		void	parssYear(std::string year);
-		void	parssMonth(std::string month);
+		void	parssYear();
+		void	parssMonth();
+		void	parssValue();
 
 	private	:
 		std::string	year;
@@ -33,6 +34,7 @@ class	btc
 		std::string	day;
 		std::string value;
 		std::string dash;
+		std::string rest;
 		std::fstream data;
 		std::fstream input;
 		std::map<std::string, std::string> map;
@@ -43,5 +45,8 @@ class	btc
 //                        FUNCTIONS                        //
 // ****************************************************** //
 
+std::string rtrim(const std::string &s);
+std::string ltrim(const std::string &s);
+std::string trim(const std::string &s);
 
 #endif
