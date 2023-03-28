@@ -1,5 +1,7 @@
 #include "btc.hpp"
 
+const std::string WHITESPACE = " \n\r\t\f\v";
+
 btc::btc()
 {
 	// std::cout << "btc : Default Constructor Called" << std::endl;
@@ -48,13 +50,13 @@ void	btc::readFromInput()
 		this->dash += str.substr(4, 1);
 		this->month = str.substr(5, 2);
 		this->dash += str.substr(7, 1);
-		this->day = str.substr(8, str.find_first_of("|") - 8);
+		this->day = str.substr(8, str.find_last_of("|") - 8 + 1);
 		this->value = str.substr(str.find_first_of("|") + 1);
 
+		btc::parssDay();
 		btc::parssValue();
 		btc::parssYear();
 		btc::parssMonth();
-		btc::parssDay();
 		break;
 	}
 }
@@ -80,16 +82,16 @@ void	btc::parssValue()
 
 	i = 0;
 	cont = 0;
-	tmp = trim(this->value);
-	std::cout << tmp << std::endl;
+	tmp = trim(this->value, WHITESPACE);
 	while (tmp[i])
 	{
 		if (tmp[i] == ',')
 			cont++;
-		if ((!isdigit(tmp[i]) && tmp[i] != ',') || cont > 1)
-			throw std::runtime_error("GGGGG");
+		if ((!isdigit(tmp[i]) && tmp[i] != '.') || cont > 1)
+			throw std::runtime_error("ERROR: DATE NOT VALID");
 		i++;
 	}
+	this->val = atof(tmp.c_str());
 }
 void	btc::readFromFile()
 {
@@ -124,11 +126,30 @@ void	btc::parssMonth()
 		throw std::runtime_error("ERROR: DATE NOT VALID6");
 }
 
+void	contPipe(std::string str)
+{
+	int i;
+	int cont;
+
+	cont = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '|')
+			cont++;
+		i++;
+	}
+	if (cont > 1)
+		throw std::runtime_error("ERROR:DATE NOT VALID *");
+}
+
 void	btc::parssDay()
 {
 	std::string tmp;
 
-	tmp = rtrim(day);
+	tmp = rtrim(day, "|");
+	tmp = rtrim(tmp, WHITESPACE);
+	std::cout << tmp << std::endl;
 	if (!isDigit(tmp) || tmp.size() > 2)
 		throw std::runtime_error("ERROR:DATE NOT VALID0");
 	if (atoi(month.c_str()) >= 1 && atoi(month.c_str()) < 8 && atoi(month.c_str()) % 2 == 0)
@@ -160,20 +181,19 @@ void	btc::parssDay()
 }
 
  
-const std::string WHITESPACE = " \n\r\t\f\v";
  
-std::string ltrim(const std::string &s)
+std::string ltrim(const std::string &s, std::string ch)
 {
-    size_t start = s.find_first_not_of(WHITESPACE);
+    size_t start = s.find_first_not_of(ch);
     return (start == std::string::npos) ? "" : s.substr(start);
 }
  
-std::string rtrim(const std::string &s)
+std::string rtrim(const std::string &s, std::string ch)
 {
-    size_t end = s.find_last_not_of(WHITESPACE);
+    size_t end = s.find_last_not_of(ch);
     return (end == std::string::npos) ? "" : s.substr(0, end + 1);
 }
 
-std::string trim(const std::string &s) {
-    return rtrim(ltrim(s));
+std::string trim(const std::string &s, std::string ch) {
+    return rtrim(ltrim(s, ch), ch);
 }

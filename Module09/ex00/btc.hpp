@@ -35,6 +35,7 @@ class	btc
 		std::string value;
 		std::string dash;
 		std::string rest;
+		double		val;
 		std::fstream data;
 		std::fstream input;
 		std::map<std::string, std::string> map;
@@ -45,8 +46,8 @@ class	btc
 //                        FUNCTIONS                        //
 // ****************************************************** //
 
-std::string rtrim(const std::string &s);
-std::string ltrim(const std::string &s);
-std::string trim(const std::string &s);
+std::string rtrim(const std::string &s, std::string ch);
+std::string ltrim(const std::string &s, std::string ch);
+std::string trim(const std::string &s, std::string ch);
 
 #endif
