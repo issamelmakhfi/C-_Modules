@@ -22,46 +22,53 @@ void	btc::parssFile(char *FileName)
 	btc::readFromInput();
 }
 
+void	countPipe(std::string str)
+{
+	int cont = 0;
+	int cont1 = 0;
+
+	if ((str.find_first_of("|") == std::string::npos))
+		throw std::runtime_error("Error: Bad input-");
+	for (size_t i = 0; i <= str.find_first_of("|");i++)
+	{
+		if (str[i] == '-')	
+			cont++;
+		if (str[i] == '|')
+			cont1++;
+	}
+	if (cont != 2 || cont1 != 1)
+		throw std::runtime_error("Error: Bad input/");
+}
+
 void	btc::readFromInput()
 {
-	int	i;
+	int	i = 0;
 	std::string	str;
-	std::map<std::string, std::string>::iterator low;
-	std::map<std::string, std::string>::iterator it = map.begin();
 
-	// if (low != map.end())
-	// std::cout << low->first << std::endl ;
+	std::map<std::string, std::string>::iterator low;
 	while (getline(this->input, str))
 	{
-		i = 0;
-		while (str[i] == ' ')
-			i++;
-		this->year = str.substr(i, 4);
-		this->dash += str.substr(i + 4, 1);
-		this->month = str.substr(i + 5, 2);
-		this->dash += str.substr(i + 7, 1);
-		this->day = str.substr(i + 8, str.find_last_of("|") - (8 + i) + 1);
-		this->value = str.substr(str.find_first_of("|") + 1);
 		try {
+			countPipe(str);
+			i = 0;
+			while (str[i] == ' ')
+				i++;
+			this->token = trim(str.substr(0, str.find_first_of("|")), WHITESPACE);
+			this->year = str.substr(i, str.find_first_of("-") - i);
+			this->month = str.substr(str.find_first_of("-") + 1, str.find_last_of("-") - str.find_first_of("-") - 1);
+			this->day = token.substr(token.find_last_of("-") + 1, token.find_first_of("|") - token.find_last_of("-"));
+			this->value = str.substr(str.find_first_of("|") + 1);
 			btc::parssDay();
 			btc::parssValue();
 			btc::parssYear();
 			btc::parssMonth();
-			// low = map.lower_bound(date);
-			std::sort(map.begin(), map.end(), std::greater<int>());
-			while (it != map.end())
-			{
-				std::cout << "key: " << it->first << "value: " << it->second << std::endl;
-				++it;
-			}
-			exit(1);
-			std::cout << date << "  ====> " << this->val << " = " << atof(map[low->first].c_str()) * this->val << std::endl;
+			low = map.lower_bound(token);
+			std::cout << token << "  ====> " << this->val << " = " << atof(map[low->first].c_str()) * this->val << std::endl;
 		}
 		catch (std::runtime_error &e)
 		{
 			std::cout << e.what() << std::endl;
 		}
-		this->dash = "";
 	}
 }
 
@@ -131,22 +138,6 @@ void	btc::parssMonth()
 		throw std::runtime_error("Error: Bad input");
 }
 
-void	contPipe(std::string str)
-{
-	int i;
-	int cont;
-
-	cont = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '|')
-			cont++;
-		i++;
-	}
-	if (cont > 1)
-		throw std::runtime_error("Error: Bad input");
-}
 
 void	btc::parssDay()
 {
@@ -154,31 +145,24 @@ void	btc::parssDay()
 
 	tmp = rtrim(day, "|");
 	tmp = rtrim(tmp, WHITESPACE);
-	if (this->dash.size() != 2)
-		throw std::runtime_error("Error: Bad input");
-	for (size_t i = 0;i < dash.size();i++)
-	{
-		if (dash[i] != '-')
-			throw std::runtime_error("Error: Bad input");
-	}
 	if (!isDigit(tmp) || tmp.size() > 2)
-		throw std::runtime_error("Error: Bad input");
+		throw std::runtime_error("Error: Bad input1");
 	if (atoi(month.c_str()) >= 1 && atoi(month.c_str()) < 8 && atoi(month.c_str()) % 2 == 0)
 	{
 		if (atoi(tmp.c_str()) < 1 || atoi(tmp.c_str()) > 30)
-			throw std::runtime_error("Error: Bad input");
+			throw std::runtime_error("Error: Bad input2");
 	}
 	else
 	{
 		if (atoi(tmp.c_str()) < 1 || atoi(tmp.c_str()) > 31)
-			throw std::runtime_error("Error: Bad input");
+			throw std::runtime_error("Error: Bad input3");
 	}
 	if (atoi(this->year.c_str()) % 4 != 0 || (atoi(this->year.c_str()) % 100 == 0 && atoi(this->year.c_str()) % 400 != 0))
 	{
 		if (atoi(this->month.c_str()) == 02)
 		{
 			if (atoi(tmp.c_str()) < 1 ||  atoi(tmp.c_str()) > 28)
-				throw std::runtime_error("Error: Bad input");
+				throw std::runtime_error("Error: Bad input4");
 		}
 	}
 	else
@@ -186,10 +170,9 @@ void	btc::parssDay()
 		if (atoi(this->month.c_str()) == 02)
 		{
 			if (atoi(this->day.c_str()) < 1 ||  atoi(this->day.c_str()) > 29)
-				throw std::runtime_error("Error: Bad input");
+				throw std::runtime_error("Error: Bad input5");
 		}
 	}
-	this->date = this->year + this->dash[0] + this->month + this->dash[1] + tmp;
 }
 
  
