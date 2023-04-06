@@ -5,7 +5,7 @@ void strIsdigit(char *str)
     size_t length = strlen(str);
     for (size_t i = 0; i < length; i++)
     {
-        if (!isdigit(str[i]) && str[i] != 32)
+        if (!isdigit(str[i]))
             throw std::runtime_error("Error");
     }
 }
@@ -99,24 +99,18 @@ void    mergeSortV(std::vector<int> *A, int lidx, int ridx)
         insertionSortV(A, lidx, ridx);
 }
 
-void    vectorAlgo(char *av[], int ac)
+void    vectorAlgo(std::vector<int> *v, char *av[], int ac)
 {
-    std::vector<int> v;
-
     for (int i = 1; i < ac; i++)
     {
-        v.push_back(atoi(av[i]));
+        (*v).push_back(atoi(av[i]));
     }
-    mergeSortV(&v, 0, v.size() - 1);
-    // for (size_t i = 0; i < v.size(); i++)
-    // {
-    //     std::cout << v[i] << std::endl;
-    // }
+    mergeSortV(v, 0, (*v).size() - 1);
 }
 
 /////////////////////////////////////////////////////////// Deque ///////////////////////////////////////////////////////////
 
-void    insertionSortDeq(std::vector<int> *A, int lidx, int ridx)
+void    insertionSortDeq(std::deque<int> *A, int lidx, int ridx)
 {
     int j;
 
@@ -133,7 +127,7 @@ void    insertionSortDeq(std::vector<int> *A, int lidx, int ridx)
     }
 }
 
-void    mergeDeq(std::vector<int> *A, int lidx, int mid, int ridx)
+void    mergeDeq(std::deque<int> *A, int lidx, int mid, int ridx)
 {
     int idx1 = mid - lidx + 1;
     int idx2 = ridx - mid;
@@ -179,7 +173,7 @@ void    mergeDeq(std::vector<int> *A, int lidx, int mid, int ridx)
     }
 }
 
-void    mergeSortDeq(std::vector<int> *A, int lidx, int ridx)
+void    mergeSortDeq(std::deque<int> *A, int lidx, int ridx)
 {
     int k = 2;
     int mid;
@@ -189,44 +183,50 @@ void    mergeSortDeq(std::vector<int> *A, int lidx, int ridx)
         mid = (ridx + lidx) / 2;
         mergeSortDeq(A, lidx, mid);
         mergeSortDeq(A, mid + 1, ridx);
-        mergeV(A, lidx, mid , ridx);
+        mergeDeq(A, lidx, mid , ridx);
     }
     else
         insertionSortDeq(A, lidx, ridx);
 }
 
-void    dequeAlgo(char *av[], int ac)
+void    dequeAlgo(std::deque<int> *d, char *av[], int ac)
 {
-    std::vector<int> v;
-
     for (int i = 1; i < ac; i++)
     {
-        v.push_back(atoi(av[i]));
+        (*d).push_back(atoi(av[i]));
     }
-    mergeSortDeq(&v, 0, v.size() - 1);
-    // for (size_t i = 0; i < v.size(); i++)
-    // {
-    //     std::cout << v[i] << std::endl;
-    // }
-
+    mergeSortDeq(d, 0, (*d).size() - 1);
 }
 
 int main(int ac, char **av)
 {
     try {
+        std::vector<int> v;
+        std::deque<int> d;
         clock_t time_req;
+
         if (ac < 2)
             throw std::runtime_error("Error: Bad Arg");
         readArgs(av);
         time_req = clock();
-        vectorAlgo(av, ac);
+        vectorAlgo(&v, av, ac);
         time_req = clock() - time_req;
-        std::cout << std::fixed << std::setprecision(2);
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : " <<  (float)time_req/CLOCKS_PER_SEC * 1000000 << std::endl;
+        std::cout << "Before: ";
+        for(int i = 1; i < ac; i++)
+            std::cout << av[i] << " ";
+        std::cout << std::endl;
+        std::cout << "After: ";
+        for (size_t i = 0; i < v.size(); i++)
+        {
+            std::cout << v[i] << " ";
+        }
+        std::cout << std::endl;
+        std::cout << std::fixed << std::setprecision(6);
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : " <<  (double)time_req << " us" << std::endl;
         time_req = clock();
-        dequeAlgo(av, ac);
+        dequeAlgo(&d, av, ac);
         time_req = clock() - time_req;
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : " <<  (float)time_req/CLOCKS_PER_SEC * 1000000<< std::endl;
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : " <<  (double)time_req << " us" << std::endl;
     }
     catch (std::runtime_error &e)
     {
