@@ -99,13 +99,18 @@ void    mergeSortV(std::vector<int> *A, int lidx, int ridx)
         insertionSortV(A, lidx, ridx);
 }
 
-void    vectorAlgo(std::vector<int> *v, char *av[], int ac)
+void    vectorAlgo(std::vector<int> *v, char *av[], int ac, double *t)
 {
+    struct timeval start, end;
+
     for (int i = 1; i < ac; i++)
     {
         (*v).push_back(atoi(av[i]));
     }
+    gettimeofday(&start, NULL);
     mergeSortV(v, 0, (*v).size() - 1);
+    gettimeofday(&end, NULL);
+    *t = static_cast<double>((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
 }
 
 /////////////////////////////////////////////////////////// Deque ///////////////////////////////////////////////////////////
@@ -189,13 +194,18 @@ void    mergeSortDeq(std::deque<int> *A, int lidx, int ridx)
         insertionSortDeq(A, lidx, ridx);
 }
 
-void    dequeAlgo(std::deque<int> *d, char *av[], int ac)
+void    dequeAlgo(std::deque<int> *d, char *av[], int ac, double *t)
 {
+    struct timeval start , end;
+
     for (int i = 1; i < ac; i++)
     {
         (*d).push_back(atoi(av[i]));
     }
+    gettimeofday(&start, NULL);
     mergeSortDeq(d, 0, (*d).size() - 1);
+    gettimeofday(&end, NULL);
+    *t = static_cast<double>((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
 }
 
 int main(int ac, char **av)
@@ -203,33 +213,26 @@ int main(int ac, char **av)
     try {
         std::vector<int> v;
         std::deque<int> d;
-        struct timeval start, end;
         double t;
 
         if (ac < 2)
             throw std::runtime_error("Error: Bad Arg");
         readArgs(av);
-        gettimeofday(&start, NULL);
-        vectorAlgo(&v, av, ac);
-        gettimeofday(&end, NULL);
-        t = (double) ((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
-        std::cout << "Before: ";
+        std::cout << "\033[0;32mBefore: \033[0m";
         for(int i = 1; i < ac; i++)
             std::cout << av[i] << " ";
         std::cout << std::endl;
-        std::cout << "After: ";
+        vectorAlgo(&v, av, ac, &t);
+        std::cout << "\033[0;32mAfter: \033[0m";
         for (size_t i = 0; i < v.size(); i++)
         {
             std::cout << v[i] << " ";
         }
         std::cout << std::endl;
-        std::cout << std::fixed << std::setprecision(6);
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : " <<  t << " sec" << std::endl;
-        gettimeofday(&start, NULL);
-        dequeAlgo(&d, av, ac);
-        gettimeofday(&end, NULL);
-        t = (double) ((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : " <<  t << " sec" << std::endl;
+        std::cout << std::fixed << std::setprecision(5);
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : \033[0;31m" <<  t << " us\033[0m" << std::endl;
+        dequeAlgo(&d, av, ac, &t);
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : \033[0;31m" << t << " us\033[0m" << std::endl;
     }
     catch (std::runtime_error &e)
     {
