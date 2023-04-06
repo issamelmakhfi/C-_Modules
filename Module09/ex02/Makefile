@@ -6,7 +6,7 @@ CC = c++
 
 STD = -std=c++98 
 
-SRC = PmergeMe.cpp main.cpp 
+SRC = main.cpp 
 
 INC = PmergeMe .hpp 
 

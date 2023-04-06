@@ -203,14 +203,16 @@ int main(int ac, char **av)
     try {
         std::vector<int> v;
         std::deque<int> d;
-        clock_t time_req;
+        struct timeval start, end;
+        double t;
 
         if (ac < 2)
             throw std::runtime_error("Error: Bad Arg");
         readArgs(av);
-        time_req = clock();
+        gettimeofday(&start, NULL);
         vectorAlgo(&v, av, ac);
-        time_req = clock() - time_req;
+        gettimeofday(&end, NULL);
+        t = (double) ((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
         std::cout << "Before: ";
         for(int i = 1; i < ac; i++)
             std::cout << av[i] << " ";
@@ -222,11 +224,12 @@ int main(int ac, char **av)
         }
         std::cout << std::endl;
         std::cout << std::fixed << std::setprecision(6);
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : " <<  (double)time_req << " us" << std::endl;
-        time_req = clock();
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : " <<  t << " sec" << std::endl;
+        gettimeofday(&start, NULL);
         dequeAlgo(&d, av, ac);
-        time_req = clock() - time_req;
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : " <<  (double)time_req << " us" << std::endl;
+        gettimeofday(&end, NULL);
+        t = (double) ((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : " <<  t << " sec" << std::endl;
     }
     catch (std::runtime_error &e)
     {
