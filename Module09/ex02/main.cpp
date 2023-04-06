@@ -103,11 +103,11 @@ void    vectorAlgo(std::vector<int> *v, char *av[], int ac, double *t)
 {
     struct timeval start, end;
 
+    gettimeofday(&start, NULL);
     for (int i = 1; i < ac; i++)
     {
         (*v).push_back(atoi(av[i]));
     }
-    gettimeofday(&start, NULL);
     mergeSortV(v, 0, (*v).size() - 1);
     gettimeofday(&end, NULL);
     *t = static_cast<double>((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
@@ -198,11 +198,11 @@ void    dequeAlgo(std::deque<int> *d, char *av[], int ac, double *t)
 {
     struct timeval start , end;
 
+    gettimeofday(&start, NULL);
     for (int i = 1; i < ac; i++)
     {
         (*d).push_back(atoi(av[i]));
     }
-    gettimeofday(&start, NULL);
     mergeSortDeq(d, 0, (*d).size() - 1);
     gettimeofday(&end, NULL);
     *t = static_cast<double>((end.tv_sec * 1e6 + end.tv_usec) - (start.tv_sec * 1e6 + start.tv_usec)) / 1e6;
@@ -230,9 +230,9 @@ int main(int ac, char **av)
         }
         std::cout << std::endl;
         std::cout << std::fixed << std::setprecision(5);
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : \033[0;31m" <<  t << " us\033[0m" << std::endl;
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector<int> : \033[0;31m" << t << " sec\033[0m" << std::endl;
         dequeAlgo(&d, av, ac, &t);
-        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : \033[0;31m" << t << " us\033[0m" << std::endl;
+        std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque<int> : \033[0;31m" << t  << " sec\033[0m" << std::endl;
     }
     catch (std::runtime_error &e)
     {
