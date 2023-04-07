@@ -18,9 +18,6 @@
 class	btc
 {
 	public	:
-		btc ();
-		~btc ();
-
 		void	parssFile(char *FileName);
 		void	readFromFile();
 		void	readFromInput();

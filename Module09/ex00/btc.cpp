@@ -2,16 +2,6 @@
 
 const std::string WHITESPACE = " \n\r\t\f\v";
 
-btc::btc()
-{
-	// std::cout << "btc : Default Constructor Called" << std::endl;
-}
-
-btc::~btc()
-{
-	// std::cout << "btc : Destructor Called" << std::endl;
-}
-
 void	btc::parssFile(char *FileName)
 {
 	this->input.open(FileName, std::ios::in);
@@ -46,6 +36,7 @@ void	btc::readFromInput()
 	std::string	str;
 
 	std::map<std::string, std::string>::iterator low;
+	getline(this->input, str);
 	while (getline(this->input, str))
 	{
 		try {
@@ -94,6 +85,8 @@ void	btc::parssValue()
 	i = 0;
 	cont = 0;
 	tmp = trim(this->value, WHITESPACE);
+	if (tmp.empty())
+		throw std::runtime_error("Error: empty value");
 	while (tmp[i])
 	{
 		if (tmp[i] == ',')
